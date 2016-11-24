@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../Backend/etc/system_file.xsd">
+    <system>
+        <tab id="ekomi" translate="label" sortOrder="1">
+            <label>Ekomi</label>
+        </tab>
+        <section id="integration" translate="label" sortOrder="1" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <label>Ekomi Integration</label>
+            <tab>ekomi</tab>
+            <resource>Ekomi_EkomiIntegration::system_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Ekomi Configuration</label>
+                <field id="active" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <comment>To enable for specific store or website, please change scop from top right</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Ekomi\EkomiIntegration\Model\Validate</backend_model>
+                </field>
+                <field id="product_reviews" translate="label" type="select" sortOrder="3"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Base Reviews</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="shop_id" translate="label" type="text" sortOrder="5"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shop ID</label>
+                    <comment>Interface id received by eKomi</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="shop_password" translate="label" type="text" sortOrder="7"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shop Password</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="order_status" translate="label" type="multiselect"
+                       sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Status</label>
+                    <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\Dropdown</source_model>
+                    <comment>Order status when review email should be sent. Please note number of days added for delay will be after this</comment>
+                </field>
+                <field id="review_mod" translate="label" type="select"
+                       sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Mod</label>
+                    <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\Mod</source_model>
+                    <comment>How do you want to ask customer for review, email or sms</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
