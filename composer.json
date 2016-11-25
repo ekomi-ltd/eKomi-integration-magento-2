@@ -13,8 +13,8 @@
   },
   "repositories": [
     {
-        "type": "vcs",
-        "url": "https://github.com/ekomi-ltd/eKomi-integration-magento-2"
+      "type": "composer",
+      "url": "https://repo.magento.com"
     }
   ],
   "author": [
