@@ -16,6 +16,5 @@
     "psr-4": {
       "Ekomi\\EkomiIntegration\\": ""
     }
-  },
-  "minimum-stability": "stable"
+  }
 }
