@@ -11,25 +11,10 @@
     "php": "~5.5.0|~5.6.0|~7.0.0",
     "magento/framework": "~100.0.4"
   },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://repo.magento.com"
-    }
-  ],
-  "author": [
-    {
-      "name": "Sandor Barics",
-      "email": "sbarics@ekomi.de",
-      "homepage": "http://www.ekomi.de/",
-      "role": "Project Manager"
-    }
-  ],
   "autoload": {
     "files": [ "registration.php" ],
     "psr-4": {
       "Ekomi\\EkomiIntegration\\": ""
     }
-  },
-  "minimum-stability": "stable"
+  }
 }
