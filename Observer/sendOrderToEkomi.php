@@ -69,7 +69,7 @@ class sendOrderToEkomi implements ObserverInterface
             'first_name'        => $order->getBillingAddress()->getFirstname(),
             'last_name'         => $order->getBillingAddress()->getLastname(),
             'email'             => $order->getCustomerEmail(),
-            'transaction_id'    => $order->getIncrementId() . '27nov2016-2',
+            'transaction_id'    => $order->getIncrementId(),
             'transaction_time'  => $scheduleTime,
             'telephone'         => $order->getBillingAddress()->getTelephone(),
             'sender_name'       => $senderName,
