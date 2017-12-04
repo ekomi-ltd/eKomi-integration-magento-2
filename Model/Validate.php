@@ -37,6 +37,16 @@ class Validate extends \Magento\Framework\App\Config\Value
     }
 
     /**
+     * @return mixed
+     *
+     */
+    public function execute()
+    {
+        $this->messageManager->addSuccess('Message from new admin controller.');
+        return parent::execute();
+    }
+
+    /**
      * @return $this
      * @throws \Exception
      */
