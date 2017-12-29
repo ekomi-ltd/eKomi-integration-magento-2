@@ -31,83 +31,171 @@ class Data extends AbstractHelper
     /**
      * @return mixed
      */
-    public function getShopId()
+    public function getShopId($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_SHOP_ID, $storeScope
-        );
+
+        if($storeId){
+            $shopId = $this->scopeConfig->getValue(
+                self::XML_PATH_SHOP_ID,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $shopId = $this->scopeConfig->getValue(
+                self::XML_PATH_SHOP_ID, $storeScope
+            );
+        }
+
+        return $shopId;
     }
 
     /**
      * @return mixed
      */
-    public function getShopPw()
+    public function getShopPw($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_SHOP_PASSWORD, $storeScope
-        );
+
+        if($storeId){
+            $shopPw = $this->scopeConfig->getValue(
+                self::XML_PATH_SHOP_PASSWORD,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $shopPw = $this->scopeConfig->getValue(
+                self::XML_PATH_SHOP_PASSWORD, $storeScope
+            );
+        }
+
+        return $shopPw;
     }
 
     /**
      * @return mixed
      */
-    public function getProductReview()
+    public function getProductReview($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_PRODUCT_REVIEWS, $storeScope
-        );
+
+        if($storeId){
+            $productReviews = $this->scopeConfig->getValue(
+                self::XML_PATH_PRODUCT_REVIEWS,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $productReviews = $this->scopeConfig->getValue(
+                self::XML_PATH_PRODUCT_REVIEWS, $storeScope
+            );
+        }
+
+        return $productReviews;
     }
 
     /**
      * @return mixed
      */
-    public function getOrderStatus()
+    public function getOrderStatus($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_ORDER_STATUS, $storeScope
-        );
+
+        if($storeId){
+            $statuses = $this->scopeConfig->getValue(
+                self::XML_PATH_ORDER_STATUS,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $statuses = $this->scopeConfig->getValue(
+                self::XML_PATH_ORDER_STATUS, $storeScope
+            );
+        }
+
+        return $statuses;
     }
 
-    public function getIsActive()
+    public function getIsActive($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_ACTIVE, $storeScope
-        );
+
+        if($storeId){
+            $isActive = $this->scopeConfig->getValue(
+                self::XML_PATH_ACTIVE,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $isActive = $this->scopeConfig->getValue(
+                self::XML_PATH_ACTIVE, $storeScope
+            );
+        }
+
+        return $isActive;
     }
 
     /**
      * @return mixed
      */
-    public function getStoreName()
+    public function getStoreName($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_STORE_NAME, $storeScope
-        );
+
+        if($storeId){
+            $storeName = $this->scopeConfig->getValue(
+                self::XML_PATH_STORE_NAME,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $storeName = $this->scopeConfig->getValue(
+                self::XML_PATH_STORE_NAME, $storeScope
+            );
+        }
+
+        return $storeName;
     }
 
     /**
      * @return mixed
      */
-    public function getStoreEmail()
+    public function getStoreEmail($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_STORE_EMAIL, $storeScope
-        );
+
+        if($storeId){
+            $storeEmail = $this->scopeConfig->getValue(
+                self::XML_PATH_STORE_EMAIL,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $storeEmail = $this->scopeConfig->getValue(
+                self::XML_PATH_STORE_EMAIL, $storeScope
+            );
+        }
+
+        return $storeEmail;
     }
 
-    public function getReviewMod()
+    public function getReviewMod($storeId = false)
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-        return $this->scopeConfig->getValue(
-            self::XML_PATH_REVIEW_MOD, $storeScope
-        );
+
+        if($storeId){
+            $reviewMode = $this->scopeConfig->getValue(
+                self::XML_PATH_REVIEW_MOD,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $reviewMode = $this->scopeConfig->getValue(
+                self::XML_PATH_REVIEW_MOD, $storeScope
+            );
+        }
+
+        return $reviewMode;
     }
 
     /**

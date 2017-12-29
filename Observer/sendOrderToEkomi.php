@@ -36,8 +36,8 @@ class sendOrderToEkomi implements ObserverInterface
         $order = $observer->getEvent()->getOrder();
         $storeId = $order->getStoreId();
 
-        $statuses = explode(',', $this->_helper->getOrderStatus());
-        if (!$this->_helper->getIsActive() || (is_array($statuses) &&
+        $statuses = explode(',', $this->_helper->getOrderStatus($storeId));
+        if (!$this->_helper->getIsActive($storeId) || (is_array($statuses) &&
                 !empty($statuses) && !in_array($order->getStatus(), $statuses))) {
             return;
         }
@@ -58,12 +58,12 @@ class sendOrderToEkomi implements ObserverInterface
     {
         $scheduleTime = date('d-m-Y H:i:s',strtotime($order->getCreatedAt()));
         $apiMode = $this->getRecipientType($order->getBillingAddress()->getTelephone(), $storeId);
-        $senderName = $this->_helper->getStoreName();
+        $senderName = $this->_helper->getStoreName($storeId);
         if(strlen($senderName) > 11)
             $senderName = substr($senderName, 0, 11);
         $fields = array(
-            'shop_id'           => $this->_helper->getShopId(),
-            'password'          => $this->_helper->getShopPw(),
+            'shop_id'           => $this->_helper->getShopId($storeId),
+            'password'          => $this->_helper->getShopPw($storeId),
             'recipient_type'    => $apiMode,
             'salutation'        => '',
             'first_name'        => $order->getBillingAddress()->getFirstname(),
@@ -73,7 +73,7 @@ class sendOrderToEkomi implements ObserverInterface
             'transaction_time'  => $scheduleTime,
             'telephone'         => $order->getBillingAddress()->getTelephone(),
             'sender_name'       => $senderName,
-            'sender_email'      => $this->_helper->getStoreEmail()
+            'sender_email'      => $this->_helper->getStoreEmail($storeId)
         );
         if ($order->getCustomerId()) {
             $fields['client_id'] = $order->getCustomerId();
@@ -83,7 +83,7 @@ class sendOrderToEkomi implements ObserverInterface
             $lname =  $order->getBillingAddress()->getLastname();
             $fields['screen_name'] = $order->getBillingAddress()->getFirstname() . $lname[0];
         }
-        if ($this->_helper->getProductReview()){
+        if ($this->_helper->getProductReview($storeId)){
             $fields['has_products'] = 1;
             $productsData = $this->getProductsData($order, $storeId);
             $fields['products_info'] = json_encode($productsData['product_info']);
