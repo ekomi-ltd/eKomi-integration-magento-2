@@ -183,7 +183,6 @@ class sendOrderToEkomi implements ObserverInterface
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
             $exec = curl_exec($ch);
             curl_close($ch);
-            echo "<pre>";
         } catch (\Exception $e) {
             $this->_logger->addError($e->getMessage());
         }
@@ -194,7 +193,7 @@ class sendOrderToEkomi implements ObserverInterface
      * @param $storeId
      * @return string
      */
-    protected  function getRecipientType($telephone, $storeId) {
+    protected function getRecipientType($telephone, $storeId) {
         $reviewMod = $this->_helper->getReviewMod($storeId);
         $apiMode = 'email';
         switch($reviewMod){
