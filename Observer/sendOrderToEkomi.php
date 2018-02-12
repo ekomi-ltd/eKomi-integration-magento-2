@@ -183,7 +183,6 @@ class sendOrderToEkomi implements ObserverInterface
             curl_setopt($ch, CURLOPT_POSTFIELDS, $postvars);
             $exec = curl_exec($ch);
             curl_close($ch);
-            echo "<pre>";
         } catch (\Exception $e) {
             $this->_logger->addError($e->getMessage());
         }
