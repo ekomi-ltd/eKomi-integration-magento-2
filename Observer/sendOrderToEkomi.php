@@ -193,7 +193,7 @@ class sendOrderToEkomi implements ObserverInterface
      * @param $storeId
      * @return string
      */
-    protected  function getRecipientType($telephone, $storeId) {
+    protected function getRecipientType($telephone, $storeId) {
         $reviewMod = $this->_helper->getReviewMod($storeId);
         $apiMode = 'email';
         switch($reviewMod){
