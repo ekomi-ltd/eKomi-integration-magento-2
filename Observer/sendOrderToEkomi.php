@@ -8,7 +8,7 @@ class sendOrderToEkomi implements ObserverInterface
 {
     protected $_logger;
     protected $_helper;
-    protected $_apiUrl = 'https://apps.ekomi.com/srr/add-recipient';
+    protected $_apiUrl = 'https://srr.ekomi.com/add-recipient';
 
     /**
      * sendOrderToEkomi constructor.

@@ -94,7 +94,7 @@ __Recommended releases__
  
 | Version        | Download      | Date       |
 | -------------  |:-------------:| :-----:    |
-| 1.2.0          | zip (11.3 kB) | 2016-Oct-27|
+| 1.2.1          | zip (11.3 kB) | 2016-Oct-27|
 
 
 
