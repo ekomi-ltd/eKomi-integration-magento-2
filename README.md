@@ -31,25 +31,23 @@ Before installing and activating your plugin, please contact support@ekomi.de, t
 
 ##### 1. Module Installation (Composer) 
  
-**1.1** Open and edit your 
+**1.1** Register the repository:
 
-	{magento2-root-directory}/composer.json 
-**1.2** Add the following VCS Git repository under repositories
+	composer config repositories.ekomi vcs https://github.com/ekomi-ltd/eKomi-integration-magento-2       
 
-	https://github.com/ekomi-ltd/eKomi-integration-magento-2            
- 
-**1.3** Add the following line under require
+**1.2** Require the eKomi extension:
 
-	"ekomi/ekomiintegration": "dev-master"
-**1.4** Execute the following commands respectively
+	composer require ekomi/ekomiintegration:dev-master
+
+**1.3** Execute the following commands respectively
 
 	composer update
 	php bin/magento setup:upgrade
 	php bin/magento setup:di:compile
  
-**1.5** Disable the cache under **System­ >> Cache Management**
+**1.4** Disable the cache under **System­ >> Cache Management**
 
-**1.6** After opening **Stores­ >>Configuration**, the module will be shown in the admin panel
+**1.5** After opening **Stores­ >>Configuration**, the module will be shown in the admin panel
 
 - Enable / Disable Product Reviews ( if enabled, product attributes will also be sent to eKomi i.e.  product id, name, image and URL )
 - Insert your Shop Id and Shop Secret 
