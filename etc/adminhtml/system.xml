@@ -14,6 +14,7 @@
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1"
                    showInWebsite="1" showInStore="1">
                 <label>Ekomi Configuration</label>
+                <comment><![CDATA[If you do not have an account with eKomi, please register <a href='https://store.ekomiapps.de/en/register?package=local-star&app=plugin-magento2' target='_blank'>Here</a> or contact our <a href='mailto:support@ekomi.de'>support</a>]]></comment>
                 <field id="active" translate="label" type="select" sortOrder="1"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enabled</label>
@@ -48,6 +49,12 @@
                     <label>Review Mod</label>
                     <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\Mod</source_model>
                     <comment>How do you want to ask customer for review, email or sms</comment>
+                </field>
+                <field id="smart_check" translate="label" type="select" sortOrder="13"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Smart Check</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable this if you have Smart Check widget on order success page</comment>
                 </field>
             </group>
         </section>
