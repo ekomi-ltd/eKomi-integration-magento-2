@@ -8,8 +8,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Ekomi_EkomiIntegration::system_config"
-                                      title="Ekomi Integration Section" />
+                            <resource id="Ekomi_EkomiIntegration::system_config" title="Ekomi Integration Section" />
                         </resource>
                     </resource>
                 </resource>

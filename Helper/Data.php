@@ -1,19 +1,31 @@
 <?php
+/**
+ * EkomiIntegration Helper
+ *
+ * @category    Ekomi
+ * @package     Ekomi_EkomiIntegration
+ * @author      Ekomi Private Limited
+ *
+ */
 
 namespace Ekomi\EkomiIntegration\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class Data
- * @package Gielberkers\Example\Helper
+ *
+ * @package Ekomi\EkomiIntegration\Helper
  */
 class Data extends AbstractHelper
 {
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     * @var ScopeConfigInterface
      */
     protected $scopeConfig;
+
     const XML_PATH_SHOP_ID          = 'integration/general/shop_id';
     const XML_PATH_SHOP_PASSWORD    = 'integration/general/shop_password';
     const XML_PATH_PRODUCT_REVIEWS  = 'integration/general/product_reviews';
@@ -22,20 +34,28 @@ class Data extends AbstractHelper
     const XML_PATH_STORE_NAME       = 'trans_email/ident_support/name';
     const XML_PATH_STORE_EMAIL      = 'trans_email/ident_support/email';
     const XML_PATH_REVIEW_MOD       = 'integration/general/review_mod';
+    const XML_PATH_SMART_CHECK      = 'integration/general/smart_check';
 
-    public function __construct(\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-    ) {
+    /**
+     * Data constructor.
+     *
+     * @param ScopeConfigInterface $scopeConfig
+     */
+    public function __construct(ScopeConfigInterface $scopeConfig)
+    {
         $this->scopeConfig = $scopeConfig;
     }
 
     /**
+     * @param bool $storeId
+     *
      * @return mixed
      */
     public function getShopId($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $shopId = $this->scopeConfig->getValue(
                 self::XML_PATH_SHOP_ID,
                 $storeScope,
@@ -43,7 +63,8 @@ class Data extends AbstractHelper
             );
         } else {
             $shopId = $this->scopeConfig->getValue(
-                self::XML_PATH_SHOP_ID, $storeScope
+                self::XML_PATH_SHOP_ID,
+                $storeScope
             );
         }
 
@@ -51,13 +72,15 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param bool $storeId
+     *
      * @return mixed
      */
     public function getShopPw($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $shopPw = $this->scopeConfig->getValue(
                 self::XML_PATH_SHOP_PASSWORD,
                 $storeScope,
@@ -65,7 +88,8 @@ class Data extends AbstractHelper
             );
         } else {
             $shopPw = $this->scopeConfig->getValue(
-                self::XML_PATH_SHOP_PASSWORD, $storeScope
+                self::XML_PATH_SHOP_PASSWORD,
+                $storeScope
             );
         }
 
@@ -73,13 +97,15 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param bool $storeId
+     *
      * @return mixed
      */
     public function getProductReview($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $productReviews = $this->scopeConfig->getValue(
                 self::XML_PATH_PRODUCT_REVIEWS,
                 $storeScope,
@@ -87,7 +113,8 @@ class Data extends AbstractHelper
             );
         } else {
             $productReviews = $this->scopeConfig->getValue(
-                self::XML_PATH_PRODUCT_REVIEWS, $storeScope
+                self::XML_PATH_PRODUCT_REVIEWS,
+                $storeScope
             );
         }
 
@@ -95,13 +122,15 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param bool $storeId
+     *
      * @return mixed
      */
     public function getOrderStatus($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $statuses = $this->scopeConfig->getValue(
                 self::XML_PATH_ORDER_STATUS,
                 $storeScope,
@@ -109,18 +138,24 @@ class Data extends AbstractHelper
             );
         } else {
             $statuses = $this->scopeConfig->getValue(
-                self::XML_PATH_ORDER_STATUS, $storeScope
+                self::XML_PATH_ORDER_STATUS,
+                $storeScope
             );
         }
 
         return $statuses;
     }
 
+    /**
+     * @param bool $storeId
+     *
+     * @return mixed
+     */
     public function getIsActive($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $isActive = $this->scopeConfig->getValue(
                 self::XML_PATH_ACTIVE,
                 $storeScope,
@@ -128,7 +163,8 @@ class Data extends AbstractHelper
             );
         } else {
             $isActive = $this->scopeConfig->getValue(
-                self::XML_PATH_ACTIVE, $storeScope
+                self::XML_PATH_ACTIVE,
+                $storeScope
             );
         }
 
@@ -136,13 +172,15 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param bool $storeId
+     *
      * @return mixed
      */
     public function getStoreName($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $storeName = $this->scopeConfig->getValue(
                 self::XML_PATH_STORE_NAME,
                 $storeScope,
@@ -150,7 +188,8 @@ class Data extends AbstractHelper
             );
         } else {
             $storeName = $this->scopeConfig->getValue(
-                self::XML_PATH_STORE_NAME, $storeScope
+                self::XML_PATH_STORE_NAME,
+                $storeScope
             );
         }
 
@@ -158,13 +197,15 @@ class Data extends AbstractHelper
     }
 
     /**
+     * @param bool $storeId
+     *
      * @return mixed
      */
     public function getStoreEmail($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $storeEmail = $this->scopeConfig->getValue(
                 self::XML_PATH_STORE_EMAIL,
                 $storeScope,
@@ -172,18 +213,24 @@ class Data extends AbstractHelper
             );
         } else {
             $storeEmail = $this->scopeConfig->getValue(
-                self::XML_PATH_STORE_EMAIL, $storeScope
+                self::XML_PATH_STORE_EMAIL,
+                $storeScope
             );
         }
 
         return $storeEmail;
     }
 
+    /**
+     * @param bool $storeId
+     *
+     * @return mixed
+     */
     public function getReviewMod($storeId = false)
     {
-        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+        $storeScope = ScopeInterface::SCOPE_STORE;
 
-        if($storeId){
+        if ($storeId) {
             $reviewMode = $this->scopeConfig->getValue(
                 self::XML_PATH_REVIEW_MOD,
                 $storeScope,
@@ -191,11 +238,37 @@ class Data extends AbstractHelper
             );
         } else {
             $reviewMode = $this->scopeConfig->getValue(
-                self::XML_PATH_REVIEW_MOD, $storeScope
+                self::XML_PATH_REVIEW_MOD,
+                $storeScope
             );
         }
 
         return $reviewMode;
+    }
+
+    /**
+     * @param bool $storeId
+     *
+     * @return mixed
+     */
+    public function getSmartCheck($storeId = false)
+    {
+        $storeScope = ScopeInterface::SCOPE_STORE;
+
+        if ($storeId) {
+            $smartCheck = $this->scopeConfig->getValue(
+                self::XML_PATH_SMART_CHECK,
+                $storeScope,
+                $storeId
+            );
+        } else {
+            $smartCheck = $this->scopeConfig->getValue(
+                self::XML_PATH_SMART_CHECK,
+                $storeScope
+            );
+        }
+
+        return $smartCheck;
     }
 
     /**
@@ -204,13 +277,14 @@ class Data extends AbstractHelper
      *
      * @return bool
      */
-    function validateE164($phone)
+    public function validateE164($phone)
     {
         $pattern = '/^\+?[1-9]\d{1,14}$/';
         preg_match($pattern, $phone, $matches);
         if (!empty($matches)) {
             return true;
         }
+
         return false;
     }
 

@@ -6,6 +6,7 @@
             <general>
                 <active>0</active>
                 <product_reviews>0</product_reviews>
+                <smart_check>0</smart_check>
             </general>
         </ekomiintegration>
     </default>

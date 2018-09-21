@@ -12,27 +12,65 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  */
+
 namespace Ekomi\EkomiIntegration\Model;
 
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Data\Collection\AbstractDb;
+use Magento\Framework\App\RequestInterface;
+use Magento\Framework\HTTP\Client\Curl;
+
+/**
+ * Class Validate
+ *
+ * @package Ekomi\EkomiIntegration\Model
+ */
 class Validate extends \Magento\Framework\App\Config\Value
 {
-    const XML_PATH_SHOP_ID = 'integration/general/shop_id';
-    const XML_PATH_SHOP_PASSWORD = 'integration/general/shop_password';
+    const GET_SETTINGS_API_URL   = 'http://api.ekomi.de/v3/getSettings';
+    const SMART_CHECK_API_URL    = 'https://srr.ekomi.com/api/v1/shops/setting';
+    const ACCESS_DENIED_RESPONSE = 'Access denied';
+
+    /**
+     * @var RequestInterface
+     */
     protected $request;
 
+    /**
+     * @var Curl
+     */
+    private $curl;
+
+    /**
+     * Validate constructor.
+     *
+     * @param Context               $context
+     * @param Registry              $registry
+     * @param ScopeConfigInterface  $config
+     * @param TypeListInterface     $cacheTypeList
+     * @param RequestInterface      $request
+     * @param Curl                  $curl
+     * @param AbstractResource|null $resource
+     * @param AbstractDb|null       $resourceCollection
+     * @param array                 $data
+     */
     public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\App\Config\ScopeConfigInterface $config,
-        \Magento\Framework\App\Cache\TypeListInterface $cacheTypeList,
-        \Magento\Framework\App\Config\ValueFactory $configValueFactory,
-        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
-        \Magento\Framework\App\Request\Http $request,
+        Context $context,
+        Registry $registry,
+        ScopeConfigInterface $config,
+        TypeListInterface $cacheTypeList,
+        RequestInterface $request,
+        Curl $curl,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->request = $request;
-        $this->_configValueFactory = $configValueFactory;
+        $this->curl    = $curl;
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
 
@@ -52,45 +90,62 @@ class Validate extends \Magento\Framework\App\Config\Value
      */
     public function beforeSave()
     {
-        $ApiUrl='http://api.ekomi.de/v3/getSettings';
-        $value = $this->getValue();
         $postData = $this->request->getPostValue();
         $postValues = $postData['groups']['general']['fields'];
         $shopId = $postValues['shop_id']['value'];
         $shopPw = $postValues['shop_password']['value'];
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,$ApiUrl."?auth=".$shopId."|".$shopPw."&version=cust-1.0.0&type=request&charset=iso");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $server_output = curl_exec ($ch);
-        curl_close ($ch);
-        if($server_output=='Access denied'){
-            throw new \Exception($server_output);
+        $smartCheck = $postValues['smart_check']['value'];
+
+        $server_output = $this->verifyAccount($shopId, $shopPw);
+        if ($server_output == null || $server_output == self::ACCESS_DENIED_RESPONSE) {
             $this->setValue(0);
-        }
-        else {
+            $errorMsg = 'Access denied, Invalid Shop ID or Password';
+            $phrase = new \Magento\Framework\Phrase($errorMsg);
+            throw new \Magento\Framework\Exception\LocalizedException($phrase);
+        } else {
+            $this->updateSmartCheck($shopId, $shopPw, $smartCheck);
             return parent::beforeSave();
         }
     }
 
     /**
-     * @return mixed
+     * @param $shopId
+     * @param $shopPw
+     *
+     * @return string
      */
-    protected function getShopId()
+    private function verifyAccount($shopId, $shopPw)
     {
-        return $this->_config->getValue(
-            self::XML_PATH_SHOP_ID,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
+        $apiUrl = self::GET_SETTINGS_API_URL . "?auth=" . $shopId . "|" . $shopPw .
+            "&version=cust-1.0.0&type=request&charset=iso";
+
+        $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
+        $this->curl->get($apiUrl);
+        $server_output = $this->curl->getBody();
+        return $server_output;
     }
 
     /**
-     * @return mixed
+     * @param $shopId
+     * @param $shopPassword
+     * @param $smartCheckOn
+     *
+     * @return bool|string
      */
-    protected function getPassword()
+    private function updateSmartCheck($shopId, $shopPassword, $smartCheckOn)
     {
-        return $this->_config->getValue(
-            self::XML_PATH_SHOP_PASSWORD,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
+        $this->curl->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $this->curl->setOption(CURLOPT_POSTFIELDS, json_encode(['smartcheck_on' => (bool)$smartCheckOn]));
+        $this->curl->addHeader('shop-id', $shopId);
+        $this->curl->addHeader('interface-password', $shopPassword);
+        $this->curl->post(
+            self::SMART_CHECK_API_URL,
+            json_encode(['smartcheck_on' => $smartCheckOn])
         );
+        $server_output = $this->curl->getBody();
+
+        return $server_output;
     }
+
 }
