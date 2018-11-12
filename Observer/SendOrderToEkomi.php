@@ -3,9 +3,8 @@
  * EkomiIntegration observer for sending orders to eKomi on status change event
  *
  * @category    Ekomi
- * @package     Ekomi_EkomiIntegration
- * @author      Ekomi Private Limited
- *
+ * @copyright   Copyright (c) 2018 Ekomi ltd (http://www.ekomi.de)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Ekomi\EkomiIntegration\Observer;
@@ -13,7 +12,9 @@ namespace Ekomi\EkomiIntegration\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\DataObject as Object;
 use Magento\Framework\HTTP\Client\Curl;
+use Magento\Framework\Event\Observer;
 use Ekomi\EkomiIntegration\Helper\Data;
+use Magento\Sales\Model\Order;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -23,6 +24,8 @@ use Psr\Log\LoggerInterface;
  */
 class SendOrderToEkomi implements ObserverInterface
 {
+    const PD_ORDERS_API_URL = 'https://plugins-dashboard.ekomiapps.de/api/v1/order';
+
     /**
      * @var \Magento\Framework\HTTP\Client\Curl
      */
@@ -37,11 +40,6 @@ class SendOrderToEkomi implements ObserverInterface
      * @var \Psr\Log\LoggerInterface
      */
     private $logger;
-
-    /**
-     * @var string
-     */
-    private $apiUrl = 'https://srr.ekomi.com/add-recipient';
 
     /**
      * SendOrderToEkomi constructor.
@@ -61,10 +59,10 @@ class SendOrderToEkomi implements ObserverInterface
     }
 
     /**
-     * @param \Magento\Framework\Event\Observer $observer
-     * @return $this
+     * @param Observer $observer
+     * @return void
      */
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    public function execute(Observer $observer)
     {
         $order = $observer->getEvent()->getOrder();
         $storeId = $order->getStoreId();
@@ -75,120 +73,143 @@ class SendOrderToEkomi implements ObserverInterface
             return;
         }
 
-        $postvars = $this->getOrderData($order, $storeId);
-        if ($postvars != '') {
-            $this->sendOrderData($postvars);
+        $orderDataJson = $this->getRequiredFields($order, $storeId);
+        if ($orderDataJson != '') {
+            $this->sendOrderData($orderDataJson);
         }
     }
 
     /**
-     * @param $order
-     * @param $storeId
+     * Extract and format configuration fields and required order data
      *
-     * @return string
+     * @param Order $order
+     * @param int $storeId
+     * @return false|string
+     */
+    private function getRequiredFields($order, $storeId)
+    {
+        $data = [
+            'shop_id' => $this->helper->getShopId($storeId),
+            'interface_password' => $this->helper->getShopPw($storeId),
+            'order_data' => $this->getOrderData($order, $storeId),
+            'mode' => $this->helper->getReviewMod($storeId),
+            'product_identifier' => $this->helper->getProductIdentifier($storeId),
+            'exclude_products' => $this->helper->getExcludeProducts($storeId),
+            'product_reviews' => (int) $this->helper->getProductReview($storeId),
+            'plugin_name' => 'magento'
+        ];
+
+        return json_encode($data);
+    }
+
+    /**
+     * Extracts required data from Order object
+     *
+     * @param Order $order
+     * @param int $storeId
+     * @return array
      */
     private function getOrderData($order, $storeId)
     {
-        $scheduleTime = date('d-m-Y H:i:s', strtotime($order->getCreatedAt()));
-        $apiMode = $this->getRecipientType($order->getBillingAddress()->getTelephone(), $storeId);
-        $senderName = $this->helper->getStoreName($storeId);
-        $firstName = $order->getBillingAddress()->getFirstname();
-        $lastName  = $order->getBillingAddress()->getLastname();
-        if (strlen($senderName) > 11) {
-            $senderName = substr($senderName, 0, 11);
-        }
-        $fields = [
-            'shop_id'           => $this->helper->getShopId($storeId),
-            'password'          => $this->helper->getShopPw($storeId),
-            'recipient_type'    => $apiMode,
-            'salutation'        => '',
-            'first_name'        => $firstName,
-            'last_name'         => $lastName,
-            'email'             => $order->getCustomerEmail(),
-            'transaction_id'    => $order->getIncrementId(),
-            'transaction_time'  => $scheduleTime,
-            'telephone'         => $order->getBillingAddress()->getTelephone(),
-            'sender_name'       => $senderName,
-            'sender_email'      => $this->helper->getStoreEmail($storeId)
+        $addressData  = $this->getAddressData($order);
+        $productsData = $this->getProductsData($order);
+
+        return [
+            'transaction_id' => $order->getIncrementId(),
+            'transaction_time' => $order->getCreatedAt(),
+            'last_updated' => $order->getUpdatedAt(),
+            'status' => $order->getStatus(),
+            'store_id' => $order->getStoreId(),
+            'email' => $order->getCustomerEmail(),
+            'customer_id' => $order->getCustomerId() ? $order->getCustomerId() : 'guest_' . $order->getIncrementId(),
+            'address' => $addressData,
+            'products' => $productsData,
+            'sender_name'  => $this->helper->getStoreName($storeId),
+            'sender_email' => $this->helper->getStoreEmail($storeId)
         ];
-        if ($order->getCustomerId()) {
-            $fields['client_id'] = $order->getCustomerId();
-            $fields['screen_name'] = $firstName . ' ' . $lastName;
-        } else {
-            $fields['client_id'] = 'guest_oId_' . $order->getIncrementId();
-            $fields['screen_name'] = $firstName . ' ' . $lastName;
-        }
-        if (!$this->helper->getProductReview($storeId)) {
-            $fields['has_products'] = 1;
-            $productsData = $this->getProductsData($order, $storeId);
-            $fields['products_info'] = json_encode($productsData['product_info']);
-            $fields['products_other'] = json_encode($productsData['other']);
-        }
-
-        $postvars = '';
-        $counter = 1;
-        foreach ($fields as $key => $value) {
-            if ($counter > 1) {
-                $postvars .="&";
-            }
-            $postvars .= $key . "=" . $value;
-            $counter++;
-        }
-
-        return $postvars;
     }
 
     /**
-     * @param $order
-     * @param $storeId
+     * Extracts Required address fields from Order object
      *
-     * @return mixed
+     * @param Order $order
+     * @return array
      */
-    private function getProductsData($order, $storeId)
+    protected function getAddressData($order)
     {
+        $address = $order->getShippingAddress();
+        if (!$address) {
+            $address = $order->getBillingAddress();
+        }
+
+        return [
+            'first_name' => $address->getFirstname(),
+            'last_name' => $address->getLastname(),
+            "telephone" => $address->getTelephone(),
+            "region" => $address->getRegion(),
+            "postcode" => $address->getPostcode(),
+            "street" => $address->getStreet()[0],
+            "city" => $address->getCity(),
+            "country" => $address->getCountryId(),
+            "address_type" => $address->getAddressType(),
+        ];
+    }
+
+    /**
+     * Extracts Required product fields from order object
+     *
+     * @param Order $order
+     * @return array
+     */
+    protected function getProductsData($order)
+    {
+        $products = [];
         $items = $order->getAllVisibleItems();
         foreach ($items as $item) {
             $product = $item->getProduct();
-            $products['product_info'][$product->getId()] = urlencode(addslashes($item->getName()));
-            $product->setStoreId($storeId);
-            $canonicalUrl = $product->getUrlModel()->getUrl($product, ['_ignore_category' => true]);
-            $productOther = [
-                'product_ids' => [
-                    'gbase' => utf8_decode($product->getId())
-                ],
-                'links' => [
-                    [
-                        'rel' => 'canonical',
-                        'type' => 'text/html',
-                        'href' => utf8_decode($canonicalUrl)
-                    ]
-                ]
-            ];
+
+            $image_url = '';
             if ($product->getThumbnail() != 'no_selection') {
                 $store = $order->getStore();
                 $baseUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
                 $imageUrl = $baseUrl . 'catalog/product' . $product->getImage();
-                $productOther['image_url'] = utf8_decode($imageUrl);
+                $image_url = utf8_decode($imageUrl);
             }
-            $products['other'][$item->getId()]['product_other'] = $productOther;
+            $canonicalUrl = $product->getUrlModel()->getUrl($product, ['_ignore_category' => true]);
+
+            $products[] = [
+                'id' => $product->getId(),
+                'sku' => $product->getSku(),
+                'type' => $product->getTypeId(),
+                'name' => $product->getName(),
+                'description' => htmlspecialchars($product->getDescription()),
+                'price' => $product->getPrice(),
+                'url' => $product->getUrl(),
+                'image_url' => $image_url,
+                'canonicalUrl' => $canonicalUrl,
+            ];
         }
 
         return $products;
     }
 
+
     /**
-     * @param $postvars
+     * Exports formatted Json to Plugins Dashboard
      *
+     * @param string $dataJson
      * @return null|string
      */
-    private function sendOrderData($postvars)
+    private function sendOrderData($dataJson)
     {
         $response = null;
         $boundary = base_convert(time(), 10, 36);
         try {
             $this->curl->setHeaders(['ContentType:multipart/form-data;boundary=' . $boundary]);
             $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
-            $this->curl->post($this->apiUrl, $postvars);
+            $this->curl->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
+            $this->curl->setOption(CURLOPT_POSTFIELDS, $dataJson);
+            $this->curl->post(self::PD_ORDERS_API_URL, $dataJson);
             $response = $this->curl->getBody();
         } catch (\Exception $e) {
             $this->logger->addError($e->getMessage());
@@ -196,34 +217,4 @@ class SendOrderToEkomi implements ObserverInterface
 
         return $response;
     }
-
-    /**
-     * @param $telephone
-     * @param $storeId
-     *
-     * @return string
-     */
-    private function getRecipientType($telephone, $storeId)
-    {
-        $reviewMod = $this->helper->getReviewMod($storeId);
-        $apiMode = 'email';
-        switch ($reviewMod) {
-            case 'sms':
-                $apiMode = 'sms';
-                break;
-            case 'email':
-                $apiMode = 'email';
-                break;
-            case 'fallback':
-                if ($this->helper->validateE164($telephone)) {
-                    $apiMode = 'sms';
-                } else {
-                    $apiMode = 'email';
-                }
-                break;
-        }
-
-        return $apiMode;
-    }
-
 }

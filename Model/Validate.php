@@ -2,15 +2,9 @@
 /**
  * Ekomi
  *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
+ * @category    Ekomi
+ * @copyright   Copyright (c) 2018 Ekomi ltd (http://www.ekomi.de)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Ekomi\EkomiIntegration\Model;
@@ -23,6 +17,8 @@ use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\HTTP\Client\Curl;
+use Magento\Framework\Phrase;
+use Magento\Framework\Exception\LocalizedException;
 
 /**
  * Class Validate
@@ -75,18 +71,10 @@ class Validate extends \Magento\Framework\App\Config\Value
     }
 
     /**
-     * @return mixed
+     * Triggers on saving configuration form
      *
-     */
-    public function execute()
-    {
-        $this->messageManager->addSuccess('Message from new admin controller.');
-        return parent::execute();
-    }
-
-    /**
-     * @return $this
-     * @throws \Exception
+     * @return \Magento\Framework\App\Config\Value
+     * @throws LocalizedException
      */
     public function beforeSave()
     {
@@ -100,18 +88,20 @@ class Validate extends \Magento\Framework\App\Config\Value
         if ($server_output == null || $server_output == self::ACCESS_DENIED_RESPONSE) {
             $this->setValue(0);
             $errorMsg = 'Access denied, Invalid Shop ID or Password';
-            $phrase = new \Magento\Framework\Phrase($errorMsg);
-            throw new \Magento\Framework\Exception\LocalizedException($phrase);
+            $phrase = new Phrase($errorMsg);
+            throw new LocalizedException($phrase);
         } else {
             $this->updateSmartCheck($shopId, $shopPw, $smartCheck);
+
             return parent::beforeSave();
         }
     }
 
     /**
-     * @param $shopId
-     * @param $shopPw
+     * Validates eKomi account credentials
      *
+     * @param string $shopId
+     * @param string $shopPw
      * @return string
      */
     private function verifyAccount($shopId, $shopPw)
@@ -122,14 +112,16 @@ class Validate extends \Magento\Framework\App\Config\Value
         $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
         $this->curl->get($apiUrl);
         $server_output = $this->curl->getBody();
+
         return $server_output;
     }
 
     /**
-     * @param $shopId
-     * @param $shopPassword
-     * @param $smartCheckOn
+     * Updates Smart Check value on SRR
      *
+     * @param string $shopId
+     * @param string $shopPassword
+     * @param boolean $smartCheckOn
      * @return bool|string
      */
     private function updateSmartCheck($shopId, $shopPassword, $smartCheckOn)
@@ -147,5 +139,4 @@ class Validate extends \Magento\Framework\App\Config\Value
 
         return $server_output;
     }
-
 }
