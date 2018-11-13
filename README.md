@@ -59,32 +59,25 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 ### 1. Module Installation (Composer)
 
-**1.1** Open and edit your {magento2-root-directory}/composer.json
+**1.1** Connect to the server via SSH and navigate to Magento root directory
 
-**1.2** Add the following VCS Git repository under repositories
-
-“[https://github.com/ekomi-ltd/eKomi-integration-magento-2](https://github.com/ekomi-ltd/eKomi-integration-magento-2)”
-
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/ekomi-ltd/eKomi-integration-magento-2"
-        }   
-    ]
+> The user should have admin rights
 
 
-**1.3** Execute the following commands respectively
+**1.2** Execute the following commands respectively
 
-    1.  composer require ekomiltd/ekomiintegration
+    1.  composer config repositories.ekomi vcs https://github.com/ekomi-ltd/eKomi-integration-magento-2
+    
+    2.  composer require ekomiltd/ekomiintegration
         
-    2.  php bin/magento setup:upgrade
+    3.  php bin/magento setup:upgrade
         
-    3.  php bin/magento setup:di:compile
+    4.  php bin/magento setup:di:compile
 
 
-**1.4** Refresh the Cache under System­ ⇾ Tools ⇾ Cache Management
+**1.3** Refresh the Cache under System­ ⇾ Tools ⇾ Cache Management
 
-**1.5** Navigate to **Stores­ ⇾ Settings ⇾ Configuration** and the module Ekomi Integration will be listed in the admin under Ekomi tab
+**1.4** Navigate to **Stores­ ⇾ Settings ⇾ Configuration** and the module Ekomi Integration will be listed in the admin under Ekomi tab
 
 ![](https://lh4.googleusercontent.com/J-VmATNnZicCPiwahZoL8TxP-32zTqSV5InBGczvozVk4L47errzj7m7G3DF3ZhUbrK_VtbqRVJFnF_VoKNqWCDUAgZhOs7Un32onSvMaTSU8ZacodEdKQq4tN_F1WnA-eV1hkSe)
 
