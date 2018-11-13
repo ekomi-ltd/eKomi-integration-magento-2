@@ -1,7 +1,10 @@
 <?php
 /**
- * Used in creating options for order status config value selection
+ * Used in creating options for Mode config value selection
  *
+ * @category    Ekomi
+ * @copyright   Copyright (c) 2018 Ekomi ltd (http://www.ekomi.de)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 namespace Ekomi\EkomiIntegration\Model\System\Config\Source;
@@ -15,7 +18,7 @@ use Magento\Framework\Option\ArrayInterface;
  */
 class Mod implements ArrayInterface
 {
-    /*
+    /**
      * Option getter
      * @return array
      */

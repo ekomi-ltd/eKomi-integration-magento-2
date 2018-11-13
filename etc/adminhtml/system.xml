@@ -18,7 +18,7 @@
                 <field id="active" translate="label" type="select" sortOrder="1"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enabled</label>
-                    <comment>To enable for specific store or website, please change scop from top right</comment>
+                    <comment>To enable for specific store or website, please change scope from top left</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <backend_model>Ekomi\EkomiIntegration\Model\Validate</backend_model>
                 </field>
@@ -38,23 +38,49 @@
                     <label>Shop Password</label>
                     <validate>required-entry</validate>
                 </field>
-                <field id="order_status" translate="label" type="multiselect"
-                       sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="order_status" translate="label" type="multiselect" sortOrder="9"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Order Status</label>
                     <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\Dropdown</source_model>
                     <comment>Order status when review email should be sent. Please note number of days added for delay will be after this</comment>
                 </field>
-                <field id="review_mod" translate="label" type="select"
-                       sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Review Mod</label>
+                <field id="review_mod" translate="label" type="select" sortOrder="11"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Review Mode</label>
                     <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\Mod</source_model>
                     <comment>How do you want to ask customer for review, email or sms</comment>
                 </field>
-                <field id="smart_check" translate="label" type="select" sortOrder="13"
+                <field id="product_identifier" translate="label" type="select" sortOrder="13"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Identifierd</label>
+                    <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\Identifier</source_model>
+                    <comment>Which product attribute should be used as identifier in eKomi</comment>
+                </field>
+                <field id="exclude_products" translate="label" type="text" sortOrder="15"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude Products</label>
+                    <comment>Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi</comment>
+                </field>
+                <field id="smart_check" translate="label" type="select" sortOrder="17"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Smart Check</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Enable this if you have Smart Check widget on order success page</comment>
+                </field>
+            </group>
+            <group id="prc" translate="label" type="text" sortOrder="1" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Product Review Container</label>
+                <field id="show_prc" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show PRC</label>
+                    <comment>To enable for specific store or website, please change scope from top left</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="widget_token" translate="label" type="text" sortOrder="5"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Widget Token</label>
+                    <comment>SW PRC Widget Token received by eKomi</comment>
                 </field>
             </group>
         </section>
