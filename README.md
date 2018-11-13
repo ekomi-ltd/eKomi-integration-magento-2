@@ -86,9 +86,11 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 **2.3** Execute the following commands respectively:
 
-    1.  php bin/magento setup:upgrade
+    1.  php bin/magento module:enable Ekomi_EkomiIntegration --clear-static-content
+    
+    2.  php bin/magento setup:upgrade
         
-    2.  php bin/magento setup:di:compile
+    3.  php bin/magento setup:di:compile
     
 
 **2.4** Refresh the Cache under System­ ⇾ Cache Management
