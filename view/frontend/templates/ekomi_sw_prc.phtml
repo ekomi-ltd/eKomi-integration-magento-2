@@ -1,0 +1,32 @@
+<?php if ($this->isModuleEnabled() && $this->isPrcEnabled()): ?>
+    <?php $productId = $this->getCurrentProductId(); ?>
+    <?php $shopId = $this->getShopId(); ?>
+    <?php $widgetToken = $this->getWidgetToken(); ?>
+
+    <div id="widget-container" class="data-ekomi-emp ekomi-widget-container ekomi-widget-<?php echo $widgetToken ?>"></div>
+    <div id="ekomi-product-widget-identifier" class="prod-data-emp" style="visibility: hidden"><?php echo $productId ?></div>
+
+    <!--    This script has to be added in this template and cannot be added in a separate js file   -->
+    <script type="text/javascript">
+        (function (w) {
+            w['_ekomiWidgetsServerUrl'] = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//widgets.ekomi.com';
+            w['_customerId'] = <?php echo $shopId ?>;
+            w['_ekomiDraftMode'] = true;
+            w['_language'] = 'en';
+
+            if(typeof(w['_ekomiWidgetTokens']) !== 'undefined'){
+                w['_ekomiWidgetTokens'][w['_ekomiWidgetTokens'].length] = '<?php echo $widgetToken ?>';
+            } else {
+                w['_ekomiWidgetTokens'] = new Array('<?php echo $widgetToken ?>');
+            }
+
+            if(typeof(ekomiWidgetJs) == 'undefined') {
+                ekomiWidgetJs = true;
+
+                var scr = document.createElement('script');scr.src = 'https://sw-assets.ekomiapps.de/static_resources/widget.js';
+                var head = document.getElementsByTagName('head')[0];head.appendChild(scr);
+            }
+        })(window);
+    </script>
+
+<?php endif; ?>
