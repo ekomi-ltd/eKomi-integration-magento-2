@@ -59,10 +59,7 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 ### 1. Module Installation (Composer)
 
-**1.1** Connect to the server via SSH and navigate to Magento root directory
-
-> The user should have admin rights
-
+**1.1** Login to the server via SSH and navigate to Magento root directory
 
 **1.2** Execute the following commands respectively
 
