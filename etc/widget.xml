@@ -1,0 +1,19 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Widget/etc/widget.xsd">
+    <widget id="ekomi_sw_prc" class="Ekomi\EkomiIntegration\Block\Widget\Reviews">
+        <label translate="true">eKomi Product Review Container</label>
+        <description>Displays the product reviews for a given product</description>
+        <parameters>
+            <parameter name="title" xsi:type="text"  visible="true" sort_order="10" >
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="sw_prc" value="ekomi_sw_prc.phtml" selected="true">
+                        <label translate="true">SW Product Review Container</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
