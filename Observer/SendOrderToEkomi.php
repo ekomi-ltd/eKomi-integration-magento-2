@@ -10,7 +10,6 @@
 namespace Ekomi\EkomiIntegration\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\DataObject as Object;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Event\Observer;
 use Ekomi\EkomiIntegration\Helper\Data;
