@@ -8,7 +8,6 @@
 namespace Ekomi\EkomiIntegration\Block\Widget;
 
 use Magento\Catalog\Model\Product;
-use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template\Context;
 use Ekomi\EkomiIntegration\Helper\Data;
@@ -21,11 +20,6 @@ use Ekomi\EkomiIntegration\Helper\Data;
 class Reviews extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
 {
     const PRODUCT_IDENTIFIER_SKU = 'sku';
-
-    /**
-     * @var StoreManagerInterface
-     */
-    protected $_storeManager;
 
     /**
      * @var Registry
@@ -46,13 +40,11 @@ class Reviews extends \Magento\Framework\View\Element\Template implements \Magen
      * @param array $data
      */
     public function __construct(
-        StoreManagerInterface $storeManager,
         Registry $registry,
         Context $context,
         Data $helper,
         array $data = []
     ) {
-        $this->_storeManager = $storeManager;
         $this->_registry     = $registry;
         $this->_helper       = $helper;
         parent::__construct($context, $data);
