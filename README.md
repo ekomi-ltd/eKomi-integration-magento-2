@@ -86,6 +86,7 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 **2.3** Execute the following commands respectively:
 
+    
     1.  php bin/magento module:enable Ekomi_EkomiIntegration --clear-static-content
     
     2.  php bin/magento setup:upgrade
@@ -236,7 +237,7 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 
 · Downloads: 37
 
-· Last modified: November 11, 2018
+· Last modified: December 04, 2018
 
   
 
@@ -250,3 +251,4 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 | 1.1.0          | zip (11.3 kB)  | 2016-Oct-27  |
 | 1.3.0          | zip (15.3 kB)  | 2018-Sep-01  |
 | 2.0.0          | zip (20.1 kB)  | 2018-Nov-12  |
+| 2.0.1          | zip (20.0 kB)  | 2018-Dec-04  |
