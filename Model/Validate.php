@@ -27,9 +27,13 @@ use Magento\Framework\Exception\LocalizedException;
  */
 class Validate extends \Magento\Framework\App\Config\Value
 {
-    const GET_SETTINGS_API_URL   = 'http://api.ekomi.de/v3/getSettings';
-    const SMART_CHECK_API_URL    = 'https://srr.ekomi.com/api/v1/shops/setting';
+    const GET_SETTINGS_API_URL = 'http://api.ekomi.de/v3/getSettings';
+    const SMART_CHECK_API_URL  = 'https://srr.ekomi.com/api/v1/shops/setting';
+    const CUSTOMER_SEGMENT_URL = 'https://srr.ekomi.com/api/v1/customer-segments';
     const ACCESS_DENIED_RESPONSE = 'Access denied';
+    const SEGMENT_STATUS_ACTIVE = "active";
+    const SEGMENT_STATUS_INACTIVE = "inactive";
+    const HTTP_STATUS_OK = 200;
 
     /**
      * @var RequestInterface
@@ -44,15 +48,15 @@ class Validate extends \Magento\Framework\App\Config\Value
     /**
      * Validate constructor.
      *
-     * @param Context               $context
-     * @param Registry              $registry
-     * @param ScopeConfigInterface  $config
-     * @param TypeListInterface     $cacheTypeList
-     * @param RequestInterface      $request
-     * @param Curl                  $curl
+     * @param Context $context
+     * @param Registry $registry
+     * @param ScopeConfigInterface $config
+     * @param TypeListInterface $cacheTypeList
+     * @param RequestInterface $request
+     * @param Curl $curl
      * @param AbstractResource|null $resource
-     * @param AbstractDb|null       $resourceCollection
-     * @param array                 $data
+     * @param AbstractDb|null $resourceCollection
+     * @param array $data
      */
     public function __construct(
         Context $context,
@@ -64,9 +68,10 @@ class Validate extends \Magento\Framework\App\Config\Value
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
         array $data = []
-    ) {
+    )
+    {
         $this->request = $request;
-        $this->curl    = $curl;
+        $this->curl = $curl;
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
 
@@ -91,6 +96,11 @@ class Validate extends \Magento\Framework\App\Config\Value
             $phrase = new Phrase($errorMsg);
             throw new LocalizedException($phrase);
         } else {
+            $customerSegment = $this->getSrrCustomerSegment($shopId, $shopPw);
+            if ($customerSegment !== false && is_array($customerSegment)) {
+                $this->activateSrrCustomerSegment($shopId, $shopPw, $customerSegment["id"]);
+            }
+
             $this->updateSmartCheck($shopId, $shopPw, $smartCheck);
 
             return parent::beforeSave();
@@ -117,6 +127,73 @@ class Validate extends \Magento\Framework\App\Config\Value
     }
 
     /**
+     * @param string $shopId
+     * @param string $shopPassword
+     * @return bool|array
+     */
+    public function getSrrCustomerSegment($shopId, $shopPw)
+    {
+        $apiUrl = self::CUSTOMER_SEGMENT_URL . '?status=' . self::SEGMENT_STATUS_INACTIVE;
+
+        $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
+        $this->curl->addHeader('shop-id', $shopId);
+        $this->curl->addHeader('interface-password', $shopPw);
+        $this->curl->get($apiUrl);
+        $responseJson = $this->curl->getBody();
+
+        $response = json_decode($responseJson, true);
+        if ($response['status_code'] !== self::HTTP_STATUS_OK) {
+            return false;
+        }
+
+        $customerSegments = $response['data'];
+        $defaultSegmentKey = $this->getDefaultSegmentKey($customerSegments);
+        if ($defaultSegmentKey === false) {
+            return false;
+        }
+
+        return $customerSegments[$defaultSegmentKey];
+    }
+
+    /**
+     * @param array $customerSegments
+     * @return bool|int|string
+     */
+    public function getDefaultSegmentKey($customerSegments)
+    {
+        foreach($customerSegments as $key => $customerSegment)
+        {
+            if ( $customerSegment['is_default'] == 'true' )
+                return $key;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param string $shopId
+     * @param string $shopPassword
+     * @param int $segmentId
+     * @return string
+     */
+    public function activateSrrCustomerSegment($shopId, $shopPassword, $segmentId)
+    {
+        $apiUrl = self::CUSTOMER_SEGMENT_URL . '/' . $segmentId . '?status=' . self::SEGMENT_STATUS_ACTIVE;
+
+        $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
+        $this->curl->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $this->curl->addHeader('shop-id', $shopId);
+        $this->curl->addHeader('interface-password', $shopPassword);
+        $this->curl->post(
+            $apiUrl,
+            ['status' => self::SEGMENT_STATUS_ACTIVE]
+        );
+        $responseJson = $this->curl->getBody();
+
+        return $responseJson;
+    }
+
+    /**
      * Updates Smart Check value on SRR
      *
      * @param string $shopId
@@ -139,4 +216,5 @@ class Validate extends \Magento\Framework\App\Config\Value
 
         return $server_output;
     }
+
 }
