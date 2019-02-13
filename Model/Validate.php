@@ -207,7 +207,7 @@ class Validate extends \Magento\Framework\App\Config\Value
         );
         $this->curl->post(
             self::SMART_CHECK_API_URL,
-            json_encode(['smartcheck_on' => $smartCheckOn])
+            ['smartcheck_on' => $smartCheckOn]
         );
         $response = $this->curl->getBody();
 
