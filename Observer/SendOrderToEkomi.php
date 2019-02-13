@@ -67,14 +67,15 @@ class SendOrderToEkomi implements ObserverInterface
         $storeId = $order->getStoreId();
 
         $statuses = explode(',', $this->helper->getOrderStatus($storeId));
+
         if (!$this->helper->getIsActive($storeId) || (is_array($statuses) &&
                 !empty($statuses) && !in_array($order->getStatus(), $statuses))) {
             return;
         }
 
-        $orderDataJson = $this->getRequiredFields($order, $storeId);
-        if ($orderDataJson != '') {
-            $this->sendOrderData($orderDataJson);
+        $orderData = $this->getRequiredFields($order, $storeId);
+        if ($orderData != '') {
+            $this->sendOrderData($orderData);
         }
     }
 
@@ -83,11 +84,11 @@ class SendOrderToEkomi implements ObserverInterface
      *
      * @param Order $order
      * @param int $storeId
-     * @return false|string
+     * @return array
      */
     private function getRequiredFields($order, $storeId)
     {
-        $data = [
+        return [
             'shop_id' => $this->helper->getShopId($storeId),
             'interface_password' => $this->helper->getShopPw($storeId),
             'order_data' => $this->getOrderData($order, $storeId),
@@ -97,8 +98,6 @@ class SendOrderToEkomi implements ObserverInterface
             'product_reviews' => (int) $this->helper->getProductReview($storeId),
             'plugin_name' => 'magento'
         ];
-
-        return json_encode($data);
     }
 
     /**
@@ -196,10 +195,10 @@ class SendOrderToEkomi implements ObserverInterface
     /**
      * Exports formatted Json to Plugins Dashboard
      *
-     * @param string $dataJson
+     * @param array $orderData
      * @return null|string
      */
-    private function sendOrderData($dataJson)
+    private function sendOrderData($orderData)
     {
         $response = null;
         $boundary = base_convert(time(), 10, 36);
@@ -207,8 +206,8 @@ class SendOrderToEkomi implements ObserverInterface
             $this->curl->setHeaders(['ContentType:multipart/form-data;boundary=' . $boundary]);
             $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
             $this->curl->setOption(CURLOPT_CUSTOMREQUEST, 'PUT');
-            $this->curl->setOption(CURLOPT_POSTFIELDS, $dataJson);
-            $this->curl->post(self::PD_ORDERS_API_URL, $dataJson);
+            $this->curl->setOption(CURLOPT_POSTFIELDS, json_encode($orderData));
+            $this->curl->post(self::PD_ORDERS_API_URL, $orderData);
             $response = $this->curl->getBody();
         } catch (\Exception $e) {
             $this->logger->addError($e->getMessage());
