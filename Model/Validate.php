@@ -229,7 +229,7 @@ class Validate extends \Magento\Framework\App\Config\Value
             $this->curl->setOption(CURLOPT_CUSTOMREQUEST, self::HTTP_METHOD_PUT);
         }
         if ($postFields !== null && is_array($postFields)) {
-            $this->curl->setOption(CURLOPT_POSTFIELDS, $postFields);
+            $this->curl->setOption(CURLOPT_POSTFIELDS, json_encode($postFields));
         }
     }
 
