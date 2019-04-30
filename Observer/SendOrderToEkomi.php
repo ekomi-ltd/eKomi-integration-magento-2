@@ -3,7 +3,7 @@
  * EkomiIntegration observer for sending orders to eKomi on status change event
  *
  * @category    Ekomi
- * @copyright   Copyright (c) 2018 Ekomi ltd (http://www.ekomi.de)
+ * @copyright   Copyright (c) 2019 Ekomi ltd (http://www.ekomi.de)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
@@ -21,6 +21,7 @@ use Ekomi\EkomiIntegration\Helper\OrderData;
  */
 class SendOrderToEkomi implements ObserverInterface
 {
+    const EXPORT_METHOD_STATUS = 'status';
     /**
      * @var DataHelper
      */
@@ -57,6 +58,7 @@ class SendOrderToEkomi implements ObserverInterface
         $statuses = explode(',', $this->dataHelper->getOrderStatus($storeId));
 
         if (!$this->dataHelper->getIsActive($storeId) ||
+            $this->dataHelper->getExportMethod($storeId) !== self::EXPORT_METHOD_STATUS ||
             (is_array($statuses) && !empty($statuses) && !in_array($order->getStatus(), $statuses))
         ) {
             return $response;
