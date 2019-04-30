@@ -28,6 +28,8 @@ class Data extends AbstractHelper
     const XML_PATH_REVIEW_MOD      = 'integration/general/review_mod';
     const XML_PATH_IDENTIFIER      = 'integration/general/product_identifier';
     const XML_PATH_EXCLUDE_IDS     = 'integration/general/exclude_products';
+    const XML_PATH_EXPORT_METHOD   = 'integration/general/export_method';
+    const XML_PATH_TURNAROUND_TIME = 'integration/general/turnaround_time';
     const XML_PATH_SMART_CHECK     = 'integration/general/smart_check';
     const XML_PATH_ACTIVE_PRC      = 'integration/prc/show_prc';
     const XML_PATH_WIDGET_TOKEN    = 'integration/prc/widget_token';
@@ -50,7 +52,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string ShopId
      */
     public function getShopId($storeId = false)
@@ -62,7 +64,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string ShopPassword
      */
     public function getShopPw($storeId = false)
@@ -74,7 +76,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return bool ProductReviews
      */
     public function getProductReview($storeId = false)
@@ -86,7 +88,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string OrderStatuses (comma separated)
      */
     public function getOrderStatus($storeId = false)
@@ -98,7 +100,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return bool Active
      */
     public function getIsActive($storeId = false)
@@ -110,7 +112,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string StoreName
      */
     public function getStoreName($storeId = false)
@@ -122,7 +124,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string StoreEmail
      */
     public function getStoreEmail($storeId = false)
@@ -134,7 +136,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string ReviewMod (email, sms, fallback)
      */
     public function getReviewMod($storeId = false)
@@ -146,7 +148,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string ProductIdentifier (id, sku)
      */
     public function getProductIdentifier($storeId = false)
@@ -158,7 +160,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string ExcludeProducts (comma separated ids)
      */
     public function getExcludeProducts($storeId = false)
@@ -170,7 +172,31 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
+     * @return string ExportMethod
+     */
+    public function getExportMethod($storeId = false)
+    {
+        return $this->getConfigValue(
+            self::XML_PATH_EXPORT_METHOD,
+            $storeId
+        );
+    }
+
+    /**
+     * @param integer $storeId
+     * @return integer TurnaroundTime
+     */
+    public function getTurnaroundTime($storeId = false)
+    {
+        return $this->getConfigValue(
+            self::XML_PATH_TURNAROUND_TIME,
+            $storeId
+        );
+    }
+
+    /**
+     * @param integer $storeId
      * @return bool SmartCheck
      */
     public function getSmartCheck($storeId = false)
@@ -182,7 +208,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return bool ActivePrc
      */
     public function getActivePrc($storeId = false)
@@ -194,7 +220,7 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param bool $storeId
+     * @param integer $storeId
      * @return string WidgetToken
      */
     public function getWidgetToken($storeId = false)
@@ -207,7 +233,7 @@ class Data extends AbstractHelper
 
     /**
      * @param string $configPath
-     * @param bool $storeId
+     * @param integer $storeId
      * @return bool|string
      */
     private function getConfigValue($configPath, $storeId = false)
