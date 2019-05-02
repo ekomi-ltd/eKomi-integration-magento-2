@@ -237,7 +237,7 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 
 · Downloads: 37
 
-· Last modified: December 04, 2018
+· Last modified: April 30, 2019
 
   
 
@@ -253,3 +253,4 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 | 2.0.0          | zip (20.1 kB)  | 2018-Nov-12  |
 | 2.0.1          | zip (20.0 kB)  | 2018-Dec-04  |
 | 2.1.0          | zip (20.8 kB)  | 2019-Jan-10  |
+| 2.2.0          | zip (28.5 kB)  | 2019-Apr-30  |

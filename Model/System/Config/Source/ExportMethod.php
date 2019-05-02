@@ -12,11 +12,11 @@ namespace Ekomi\EkomiIntegration\Model\System\Config\Source;
 use Magento\Framework\Option\ArrayInterface;
 
 /**
- * Class Identifier
+ * Class ExportMethod
  *
  * @package Ekomi\EkomiIntegration\Model\System\Config\Source
  */
-class Identifier implements ArrayInterface
+class ExportMethod implements ArrayInterface
 {
     /**
      * Option getter
@@ -26,8 +26,8 @@ class Identifier implements ArrayInterface
     public function toOptionArray()
     {
         return $mod = [
-            ['value' => 'id', 'label' => 'Product ID'],
-            ['value' => 'sku', 'label' => 'Product SKU']
+            ['value' => 'status', 'label' => 'On Order Status Change'],
+            ['value' => 'cron', 'label' => 'Every 24 hours (Cron)']
         ];
     }
 }
