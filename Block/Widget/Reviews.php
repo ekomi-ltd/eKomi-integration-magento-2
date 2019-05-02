@@ -1,7 +1,7 @@
 <?php
 /**
  * @category    Ekomi
- * @copyright   Copyright (c) 2018 Ekomi ltd (http://www.ekomi.de)
+ * @copyright   Copyright (c) 2019 Ekomi ltd (http://www.ekomi.de)
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 

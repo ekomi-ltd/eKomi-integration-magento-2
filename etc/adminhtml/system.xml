@@ -61,7 +61,19 @@
                     <label>Exclude Products</label>
                     <comment>Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi</comment>
                 </field>
-                <field id="smart_check" translate="label" type="select" sortOrder="17"
+                <field id="export_method" translate="label" type="select" sortOrder="17"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Export Method</label>
+                    <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\ExportMethod</source_model>
+                    <comment>When should the orders be exported to eKomi?</comment>
+                </field>
+                <field id="turnaround_time" translate="label" type="select" sortOrder="17"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>TurnAround Time</label>
+                    <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\TurnaroundTime</source_model>
+                    <comment>Number of days required to complete an order</comment>
+                </field>
+                <field id="smart_check" translate="label" type="select" sortOrder="21"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Smart Check</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
