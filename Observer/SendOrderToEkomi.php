@@ -22,6 +22,7 @@ use Ekomi\EkomiIntegration\Helper\OrderData;
 class SendOrderToEkomi implements ObserverInterface
 {
     const EXPORT_METHOD_STATUS = 'status';
+
     /**
      * @var DataHelper
      */
