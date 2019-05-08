@@ -19,6 +19,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Phrase;
 use Magento\Framework\Exception\LocalizedException;
+use Ekomi\EkomiIntegration\Helper\Data as DataHelper;
 
 /**
  * Class Validate
@@ -48,6 +49,11 @@ class Validate extends \Magento\Framework\App\Config\Value
     private $curl;
 
     /**
+     * @var DataHelper
+     */
+    private $dataHelper;
+
+    /**
      * Validate constructor.
      *
      * @param Context $context
@@ -67,6 +73,7 @@ class Validate extends \Magento\Framework\App\Config\Value
         TypeListInterface $cacheTypeList,
         RequestInterface $request,
         Curl $curl,
+        DataHelper $dataHelper,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
         array $data = []
@@ -74,6 +81,7 @@ class Validate extends \Magento\Framework\App\Config\Value
     {
         $this->request = $request;
         $this->curl = $curl;
+        $this->dataHelper = $dataHelper;
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
 
@@ -87,9 +95,19 @@ class Validate extends \Magento\Framework\App\Config\Value
     {
         $postData = $this->request->getPostValue();
         $postValues = $postData['groups']['general']['fields'];
-        $shopId = $postValues['shop_id']['value'];
-        $shopPassword = $postValues['shop_password']['value'];
-        $smartCheck = $postValues['smart_check']['value'];
+        $storeId = $this->request->getParam('store', 0);
+
+        if (isset($postValues['shop_id']['value'])) {
+            $shopId = $postValues['shop_id']['value'];
+        } elseif (isset($postValues['shop_id']['inherit']) && $postValues['shop_id']['inherit'] == 1) {
+            $shopId = $this->dataHelper->getShopId($storeId);
+        }
+
+        if (isset($postValues['shop_password']['value'])) {
+            $shopPassword = $postValues['shop_password']['value'];
+        } elseif (isset($postValues['shop_password']['inherit']) && $postValues['shop_password']['inherit'] == 1) {
+            $shopPassword = $this->dataHelper->getShopPw($storeId);
+        }
 
         $server_output = $this->verifyAccount($shopId, $shopPassword);
         if ($server_output == null || $server_output == self::ACCESS_DENIED_RESPONSE) {
@@ -103,6 +121,11 @@ class Validate extends \Magento\Framework\App\Config\Value
                 $this->activateSrrCustomerSegment($shopId, $shopPassword, $customerSegment["id"]);
             }
 
+            if (isset($postValues['smart_check']['value'])) {
+                $smartCheck = $postValues['smart_check']['value'];
+            } elseif (isset($postValues['smart_check']['inherit']) && $postValues['smart_check']['inherit'] == 1) {
+                $smartCheck = $this->dataHelper->getSmartCheck($storeId);
+            }
             $this->updateSmartCheck($shopId, $shopPassword, $smartCheck);
 
             return parent::beforeSave();
