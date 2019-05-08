@@ -124,7 +124,7 @@ class Validate extends \Magento\Framework\App\Config\Value
             if (isset($postValues['smart_check']['value'])) {
                 $smartCheck = $postValues['smart_check']['value'];
             } elseif (isset($postValues['smart_check']['inherit']) && $postValues['smart_check']['inherit'] == 1) {
-                $smartCheck = $this->dataHelper->getShopPw($storeId);
+                $smartCheck = $this->dataHelper->getSmartCheck($storeId);
             }
             $this->updateSmartCheck($shopId, $shopPassword, $smartCheck);
 
