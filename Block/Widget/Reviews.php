@@ -20,6 +20,11 @@ use Ekomi\EkomiIntegration\Helper\Data;
 class Reviews extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
 {
     const PRODUCT_IDENTIFIER_SKU = 'sku';
+    const IDENTIFIER_IDS = 'productIds';
+    const IDENTIFIER_SKU = 'productSku';
+    const PRODUCT_TYPE_BUNDLE = 'bundle';
+    const PRODUCT_TYPE_GROUPED = 'grouped';
+    const PRODUCT_TYPE_CONFIGURABLE = 'configurable';
 
     /**
      * @var Registry
@@ -57,12 +62,44 @@ class Reviews extends \Magento\Framework\View\Element\Template implements \Magen
      */
     public function getCurrentProductId()
     {
-        $productIdentifier = $this->_helper->getProductIdentifier();
+        $productsData = $this->getProductsDataByType($this->_registry->registry('product'));
+        $productIdentifier = $this->_helper->getProductIdentifier($this->getStoreId());
+
         if ($productIdentifier == self::PRODUCT_IDENTIFIER_SKU) {
-            return  $this->_registry->registry('product')->getSku();
+            return  implode(',', $productsData[self::IDENTIFIER_SKU]);
         }
 
-        return $this->_registry->registry('product')->getId();
+        return implode(',', $productsData[self::IDENTIFIER_IDS]);
+    }
+
+    /**
+     * @param $product
+     * @return array
+     */
+    public function getProductsDataByType($product)
+    {
+        $productsData = [];
+        $associatedProducts = [];
+        $productsData[self::IDENTIFIER_IDS][] = $product->getId();
+        $productsData[self::IDENTIFIER_SKU][] = $product->getSku();
+
+        $productType = $product->getTypeId();
+        if ($productType == self::PRODUCT_TYPE_GROUPED) {
+            $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
+        } elseif ($productType == self::PRODUCT_TYPE_BUNDLE) {
+            $associatedProducts = $product->getTypeInstance(true)->getSelectionsCollection(
+                $product->getTypeInstance(true)->getOptionsIds($product), $product
+            );
+        } elseif ($productType == self::PRODUCT_TYPE_CONFIGURABLE) {
+            $associatedProducts = $product->getTypeInstance(true)->getUsedProducts($product);
+        }
+
+        foreach($associatedProducts as $associatedProduct) {
+            $productsData[self::IDENTIFIER_IDS][] = $associatedProduct->getId();
+            $productsData[self::IDENTIFIER_SKU][] = $associatedProduct->getSku();
+        }
+
+        return $productsData;
     }
 
     /**
