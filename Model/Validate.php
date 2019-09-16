@@ -20,6 +20,7 @@ use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Phrase;
 use Magento\Framework\Exception\LocalizedException;
 use Ekomi\EkomiIntegration\Helper\Data as DataHelper;
+use \Magento\Framework\Message\ManagerInterface;
 
 /**
  * Class Validate
@@ -37,6 +38,7 @@ class Validate extends \Magento\Framework\App\Config\Value
     const HTTP_METHOD_GET = 'GET';
     const HTTP_METHOD_PUT = 'PUT';
     const HTTP_STATUS_OK = 200;
+    const CUSTOMER_SEGMENT_DISABLE = 'Customer Segement is Disabled in SRR Kindly Enable it here https://srr.ekomi.com/';
 
     /**
      * @var RequestInterface
@@ -54,6 +56,11 @@ class Validate extends \Magento\Framework\App\Config\Value
     private $dataHelper;
 
     /**
+     * @var ManagerInterface
+     */
+    private $messageManager;
+
+    /**
      * Validate constructor.
      *
      * @param Context $context
@@ -65,6 +72,7 @@ class Validate extends \Magento\Framework\App\Config\Value
      * @param AbstractResource|null $resource
      * @param AbstractDb|null $resourceCollection
      * @param array $data
+     * @param ManagerInterface $messageManager
      */
     public function __construct(
         Context $context,
@@ -76,12 +84,13 @@ class Validate extends \Magento\Framework\App\Config\Value
         DataHelper $dataHelper,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
-        array $data = []
-    )
-    {
+        array $data = [],
+        ManagerInterface $messageManager
+    ) {
         $this->request = $request;
         $this->curl = $curl;
         $this->dataHelper = $dataHelper;
+        $this->messageManager = $messageManager;
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
 
@@ -118,7 +127,7 @@ class Validate extends \Magento\Framework\App\Config\Value
         } else {
             $customerSegment = $this->getSrrCustomerSegment($shopId, $shopPassword);
             if ($customerSegment !== false && is_array($customerSegment)) {
-                $this->activateSrrCustomerSegment($shopId, $shopPassword, $customerSegment["id"]);
+                $this->messageManager->addWarningMessage(self::CUSTOMER_SEGMENT_DISABLE);
             }
 
             if (isset($postValues['smart_check']['value'])) {
@@ -191,25 +200,6 @@ class Validate extends \Magento\Framework\App\Config\Value
         }
 
         return false;
-    }
-
-    /**
-     * @param string $shopId
-     * @param string $shopPassword
-     * @param int $segmentId
-     * @return string
-     */
-    public function activateSrrCustomerSegment($shopId, $shopPassword, $segmentId)
-    {
-        $apiUrl = self::CUSTOMER_SEGMENT_URL . '/' . $segmentId . '?status=' . self::SEGMENT_STATUS_ACTIVE;
-        $this->configureCurl($shopId, $shopPassword, self::HTTP_METHOD_PUT);
-        $this->curl->post(
-            $apiUrl,
-            []
-        );
-        $responseJson = $this->curl->getBody();
-
-        return $responseJson;
     }
 
     /**
