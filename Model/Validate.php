@@ -38,7 +38,8 @@ class Validate extends \Magento\Framework\App\Config\Value
     const HTTP_METHOD_GET = 'GET';
     const HTTP_METHOD_PUT = 'PUT';
     const HTTP_STATUS_OK = 200;
-    const CUSTOMER_SEGMENT_DISABLE = 'Customer Segement is Disabled in SRR Kindly Enable it here https://srr.ekomi.com/';
+    const CUSTOMER_SEGMENT_DISABLE = 'None of the Customer Segments are enabled, please enable at least one from '
+     . "<a href='https://srr.ekomi.com/' target='_blank'>here</a>";
 
     /**
      * @var RequestInterface
@@ -127,7 +128,7 @@ class Validate extends \Magento\Framework\App\Config\Value
         } else {
             $customerSegment = $this->getSrrCustomerSegment($shopId, $shopPassword);
             if ($customerSegment !== false && is_array($customerSegment)) {
-                $this->messageManager->addWarningMessage(self::CUSTOMER_SEGMENT_DISABLE);
+                $this->messageManager->addWarning(__(self::CUSTOMER_SEGMENT_DISABLE));
             }
 
             if (isset($postValues['smart_check']['value'])) {
