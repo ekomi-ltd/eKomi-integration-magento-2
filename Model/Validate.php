@@ -38,7 +38,7 @@ class Validate extends \Magento\Framework\App\Config\Value
     const HTTP_METHOD_GET = 'GET';
     const HTTP_METHOD_PUT = 'PUT';
     const HTTP_STATUS_OK = 200;
-    const CUSTOMER_SEGMENT_DISABLE = 'None of the Customer Segments are enabled, please enable at least one from '
+    const CUSTOMER_SEGMENT_DISABLE = 'Default Customer Segments is disabled, please enable it '
      . "<a href='https://srr.ekomi.com/' target='_blank'>here</a>";
 
     /**
@@ -119,8 +119,8 @@ class Validate extends \Magento\Framework\App\Config\Value
             $shopPassword = $this->dataHelper->getShopPw($storeId);
         }
 
-        $server_output = $this->verifyAccount($shopId, $shopPassword);
-        if ($server_output == null || $server_output == self::ACCESS_DENIED_RESPONSE) {
+        $serverOutput = $this->verifyAccount($shopId, $shopPassword);
+        if ($serverOutput == null || $serverOutput == self::ACCESS_DENIED_RESPONSE) {
             $this->setValue(0);
             $errorMsg = 'Access denied, Invalid Shop ID or Password';
             $phrase = new Phrase($errorMsg);
@@ -156,9 +156,9 @@ class Validate extends \Magento\Framework\App\Config\Value
 
         $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
         $this->curl->get($apiUrl);
-        $server_output = $this->curl->getBody();
+        $serverOutput = $this->curl->getBody();
 
-        return $server_output;
+        return $serverOutput;
     }
 
     /**
