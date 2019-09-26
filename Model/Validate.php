@@ -38,7 +38,7 @@ class Validate extends \Magento\Framework\App\Config\Value
     const HTTP_METHOD_GET = 'GET';
     const HTTP_METHOD_PUT = 'PUT';
     const HTTP_STATUS_OK = 200;
-    const CUSTOMER_SEGMENT_DISABLE = "Default Customer Segments is disabled, please enable it " . "<a href='https://srr.ekomi.com/' target='_blank'>here</a>";
+    const CUSTOMER_SEGMENT_DISABLE = "Default Customer Segments is disabled, please enable it <a href='https://srr.ekomi.com/' target='_blank'>here</a>";
 
     /**
      * @var RequestInterface
