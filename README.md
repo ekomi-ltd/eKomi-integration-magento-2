@@ -254,3 +254,4 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 | 2.2.0          | zip (28.5 kB)  | 2019-Apr-30  |
 | 2.2.1          | zip (29.4 kB)  | 2019-May-07  |
 | 2.3.0          | zip (28.1 kB)  | 2019-May-22  |
+| 2.3.1          | zip (28.1 kB)  | 2019-Sep-26  |
