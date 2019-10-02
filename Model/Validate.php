@@ -174,7 +174,7 @@ class Validate extends \Magento\Framework\App\Config\Value
         $responseJson = $this->curl->getBody();
 
         $response = json_decode($responseJson, true);
-        if ($response['status_code'] !== self::HTTP_STATUS_OK) {
+        if (!isset($response['status_code']) || $response['status_code'] !== self::HTTP_STATUS_OK) {
             return false;
         }
 
