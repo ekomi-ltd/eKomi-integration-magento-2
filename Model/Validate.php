@@ -69,10 +69,10 @@ class Validate extends \Magento\Framework\App\Config\Value
      * @param TypeListInterface $cacheTypeList
      * @param RequestInterface $request
      * @param Curl $curl
+     * @param ManagerInterface $messageManager
      * @param AbstractResource|null $resource
      * @param AbstractDb|null $resourceCollection
      * @param array $data
-     * @param ManagerInterface $messageManager
      */
     public function __construct(
         Context $context,
@@ -82,10 +82,10 @@ class Validate extends \Magento\Framework\App\Config\Value
         RequestInterface $request,
         Curl $curl,
         DataHelper $dataHelper,
+        ManagerInterface $messageManager,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
-        array $data = [],
-        ManagerInterface $messageManager
+        array $data = []
     ) {
         $this->request = $request;
         $this->curl = $curl;
