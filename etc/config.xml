@@ -8,7 +8,6 @@
                 <product_reviews>0</product_reviews>
                 <export_method>status</export_method>
                 <turnaround_time>10</turnaround_time>
-                <smart_check>0</smart_check>
             </general>
             <prc>
                 <show_prc>0</show_prc>

@@ -30,7 +30,6 @@ use \Magento\Framework\Message\ManagerInterface;
 class Validate extends \Magento\Framework\App\Config\Value
 {
     const GET_SETTINGS_API_URL = 'http://api.ekomi.de/v3/getSettings';
-    const SMART_CHECK_API_URL  = 'https://srr.ekomi.com/api/v1/shops/setting';
     const CUSTOMER_SEGMENT_URL = 'https://srr.ekomi.com/api/v1/customer-segments';
     const ACCESS_DENIED_RESPONSE = 'Access denied';
     const SEGMENT_STATUS_ACTIVE = "active";
@@ -130,13 +129,6 @@ class Validate extends \Magento\Framework\App\Config\Value
                 $this->messageManager->addWarning(__(self::CUSTOMER_SEGMENT_DISABLE));
             }
 
-            if (isset($postValues['smart_check']['value'])) {
-                $smartCheck = $postValues['smart_check']['value'];
-            } elseif (isset($postValues['smart_check']['inherit']) && $postValues['smart_check']['inherit'] == 1) {
-                $smartCheck = $this->dataHelper->getSmartCheck($storeId);
-            }
-            $this->updateSmartCheck($shopId, $shopPassword, $smartCheck);
-
             return parent::beforeSave();
         }
     }
@@ -200,31 +192,6 @@ class Validate extends \Magento\Framework\App\Config\Value
         }
 
         return false;
-    }
-
-    /**
-     * Updates Smart Check value on SRR
-     *
-     * @param string $shopId
-     * @param string $shopPassword
-     * @param boolean $smartCheckOn
-     * @return bool|string
-     */
-    private function updateSmartCheck($shopId, $shopPassword, $smartCheckOn)
-    {
-        $this->configureCurl(
-            $shopId,
-            $shopPassword,
-            self::HTTP_METHOD_PUT,
-            ['smartcheck_on' => (bool)$smartCheckOn]
-        );
-        $this->curl->post(
-            self::SMART_CHECK_API_URL,
-            ['smartcheck_on' => $smartCheckOn]
-        );
-        $response = $this->curl->getBody();
-
-        return $response;
     }
 
     /**
