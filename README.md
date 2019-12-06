@@ -131,8 +131,6 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
     
 -   Exclude Products: Comma separated product IDs/SKUs which should be excluded.
     
--   Smart Check: Enable this if you have Smart Check widget on order success page.
-    
 -   Save the configuration
 
 > Note: Plugin will only be enabled if shop credentials are valid.
@@ -256,3 +254,4 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 | 2.3.0          | zip (28.1 kB)  | 2019-May-22  |
 | 2.3.1          | zip (28.1 kB)  | 2019-Sep-26  |
 | 2.3.2          | zip (28.1 kB)  | 2019-Oct-02  |
+| 2.3.3          | zip (28.1 kB)  | 2019-Dec-06  |

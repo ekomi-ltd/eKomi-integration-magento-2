@@ -30,7 +30,6 @@ class Data extends AbstractHelper
     const XML_PATH_EXCLUDE_IDS     = 'integration/general/exclude_products';
     const XML_PATH_EXPORT_METHOD   = 'integration/general/export_method';
     const XML_PATH_TURNAROUND_TIME = 'integration/general/turnaround_time';
-    const XML_PATH_SMART_CHECK     = 'integration/general/smart_check';
     const XML_PATH_ACTIVE_PRC      = 'integration/prc/show_prc';
     const XML_PATH_WIDGET_TOKEN    = 'integration/prc/widget_token';
     const XML_PATH_STORE_NAME      = 'trans_email/ident_support/name';
@@ -191,18 +190,6 @@ class Data extends AbstractHelper
     {
         return $this->getConfigValue(
             self::XML_PATH_TURNAROUND_TIME,
-            $storeId
-        );
-    }
-
-    /**
-     * @param integer $storeId
-     * @return bool SmartCheck
-     */
-    public function getSmartCheck($storeId = false)
-    {
-        return $this->getConfigValue(
-            self::XML_PATH_SMART_CHECK,
             $storeId
         );
     }

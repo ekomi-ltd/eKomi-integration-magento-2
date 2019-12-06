@@ -73,12 +73,6 @@
                     <source_model>Ekomi\EkomiIntegration\Model\System\Config\Source\TurnaroundTime</source_model>
                     <comment>Number of days required to complete an order</comment>
                 </field>
-                <field id="smart_check" translate="label" type="select" sortOrder="21"
-                       showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Smart Check</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Enable this if you have Smart Check widget on order success page</comment>
-                </field>
             </group>
             <group id="prc" translate="label" type="text" sortOrder="1" showInDefault="1"
                    showInWebsite="1" showInStore="1">
