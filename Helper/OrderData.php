@@ -93,9 +93,7 @@ class OrderData extends AbstractHelper
         return [
             'transaction_id' => $order->getIncrementId(),
             'transaction_time' => $order->getCreatedAt(),
-            'last_updated' => $order->getUpdatedAt(),
             'status' => $order->getStatus(),
-            'store_id' => $order->getStoreId(),
             'email' => $order->getCustomerEmail(),
             'customer_id' => $order->getCustomerId() ? $order->getCustomerId() : 'guest_' . $order->getIncrementId(),
             'address' => $addressData,
@@ -122,12 +120,7 @@ class OrderData extends AbstractHelper
             'first_name' => $address->getFirstname(),
             'last_name' => $address->getLastname(),
             "telephone" => $address->getTelephone(),
-            "region" => $address->getRegion(),
-            "postcode" => $address->getPostcode(),
-            "street" => $address->getStreet()[0],
-            "city" => $address->getCity(),
             "country" => $address->getCountryId(),
-            "address_type" => $address->getAddressType(),
         ];
     }
 
@@ -159,7 +152,6 @@ class OrderData extends AbstractHelper
                 'type' => $product->getTypeId(),
                 'name' => $product->getName(),
                 'description' => htmlspecialchars($product->getDescription()),
-                'price' => $product->getPrice(),
                 'url' => $product->getUrl(),
                 'image_url' => $image_url,
                 'canonicalUrl' => $canonicalUrl,
