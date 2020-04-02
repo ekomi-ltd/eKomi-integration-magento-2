@@ -2,7 +2,7 @@
   "name": "ekomiltd/ekomiintegration",
   "description": "eKomi Plugin for Magento allows you to integrate your Magento shop easily with eKomi system. This allows you to collect verified reviews, display eKomi seal on your website and get your seller ratings on Google. This helps you increase your website's click through rates, conversion rates and also, if you are running Google AdWord Campaigns, this helps in improving your Quality Score and hence your costs per click.",
   "type": "magento2-module",
-  "version": "2.3.3",
+  "version": "2.4.0",
   "license": [
     "OSL-3.0",
     "AFL-3.0"
