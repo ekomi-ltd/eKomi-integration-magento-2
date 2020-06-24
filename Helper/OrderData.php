@@ -137,8 +137,12 @@ class OrderData extends AbstractHelper
         foreach ($items as $item) {
             $product = $item->getProduct();
 
+            if (empty($product)) {
+                continue;
+            }
+
             $image_url = '';
-            if (!empty($product) && $product->getThumbnail() != 'no_selection') {
+            if ($product->getThumbnail() != 'no_selection') {
                 $store = $order->getStore();
                 $baseUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
                 $imageUrl = $baseUrl . 'catalog/product' . $product->getImage();
