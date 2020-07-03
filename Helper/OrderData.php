@@ -137,6 +137,10 @@ class OrderData extends AbstractHelper
         foreach ($items as $item) {
             $product = $item->getProduct();
 
+            if (empty($product)) {
+                continue;
+            }
+
             $image_url = '';
             if ($product->getThumbnail() != 'no_selection') {
                 $store = $order->getStore();
