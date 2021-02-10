@@ -131,6 +131,8 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
     
 -   Exclude Products: Comma separated product IDs/SKUs which should be excluded.
     
+-   Terms and Conditions: If enabled, then sends order to eKomi System otherwise not.
+    
 -   Save the configuration
 
 > Note: Plugin will only be enabled if shop credentials are valid.

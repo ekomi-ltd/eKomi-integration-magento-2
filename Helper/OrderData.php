@@ -174,6 +174,10 @@ class OrderData extends AbstractHelper
      */
     public function sendOrderData($orderData)
     {
+        if (!$this->dataHelper->isTermsAndConditionsAccepted()) {
+            return null;
+        }
+
         $response = null;
         $boundary = base_convert(time(), 10, 36);
         try {

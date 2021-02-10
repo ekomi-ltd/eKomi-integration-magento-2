@@ -34,6 +34,7 @@ class Data extends AbstractHelper
     const XML_PATH_WIDGET_TOKEN    = 'integration/prc/widget_token';
     const XML_PATH_STORE_NAME      = 'trans_email/ident_support/name';
     const XML_PATH_STORE_EMAIL     = 'trans_email/ident_support/email';
+    const XML_PATH_TERMS_CONDITION = 'integration/general/terms_and_conditions';
 
     /**
      * @var ScopeConfigInterface
@@ -241,5 +242,17 @@ class Data extends AbstractHelper
         }
 
         return $value;
+    }
+
+    /**
+     * @param null $storeId
+     * @return bool|string
+     */
+    public function isTermsAndConditionsAccepted($storeId = null)
+    {
+        return $this->getConfigValue(
+            self::XML_PATH_TERMS_CONDITION,
+            $storeId
+        );
     }
 }
