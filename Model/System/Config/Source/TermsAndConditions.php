@@ -23,7 +23,7 @@ class TermsAndConditions implements ArrayInterface
      */
     public function toOptionArray()
     {
-        return $mod = [
+        return [
             ['value' => true, 'label' => 'Yes'],
             ['value' => false, 'label' => 'No'],
         ];
