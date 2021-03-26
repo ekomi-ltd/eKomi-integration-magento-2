@@ -80,7 +80,7 @@
                     <comment><![CDATA[ <span style="font-size:12px;"> The plugin will export orders only if you are agree with our <a href='https://plugins-dashboard.ekomiapps.de/terms_and_conditions' target='_blank'>Terms and Conditions</a> </span>]]></comment>
                 </field>
             </group>
-            <group id="prc" translate="label" type="text" sortOrder="1" showInDefault="1"
+            <!-- <group id="prc" translate="label" type="text" sortOrder="1" showInDefault="1"
                    showInWebsite="1" showInStore="1">
                 <label>Product Review Container</label>
                 <field id="show_prc" translate="label" type="select" sortOrder="1"
@@ -94,7 +94,7 @@
                     <label>Widget Token</label>
                     <comment>SW PRC Widget Token received by eKomi</comment>
                 </field>
-            </group>
+            </group> -->
         </section>
     </system>
 </config>
