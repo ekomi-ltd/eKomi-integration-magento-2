@@ -6,7 +6,7 @@
         <tab id="ekomi" translate="label" sortOrder="1">
             <label>Ekomi</label>
         </tab>
-        <section id="integration" translate="label" sortOrder="1" showInDefault="1"
+        <section id="ekomiintegration" translate="label" sortOrder="1" showInDefault="1"
                  showInWebsite="1" showInStore="1">
             <label>Ekomi Integration</label>
             <tab>ekomi</tab>

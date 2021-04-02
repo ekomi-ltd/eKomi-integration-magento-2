@@ -8,6 +8,7 @@
                 <product_reviews>0</product_reviews>
                 <export_method>status</export_method>
                 <turnaround_time>10</turnaround_time>
+                <terms_and_conditions>1</terms_and_conditions>
             </general>
             <prc>
                 <show_prc>0</show_prc>
