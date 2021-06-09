@@ -20,21 +20,21 @@ use Magento\Store\Model\ScopeInterface;
  */
 class Data extends AbstractHelper
 {
-    const XML_PATH_SHOP_ID         = 'integration/general/shop_id';
-    const XML_PATH_SHOP_PASSWORD   = 'integration/general/shop_password';
-    const XML_PATH_PRODUCT_REVIEWS = 'integration/general/product_reviews';
-    const XML_PATH_ORDER_STATUS    = 'integration/general/order_status';
-    const XML_PATH_ACTIVE          = 'integration/general/active';
-    const XML_PATH_REVIEW_MOD      = 'integration/general/review_mod';
-    const XML_PATH_IDENTIFIER      = 'integration/general/product_identifier';
-    const XML_PATH_EXCLUDE_IDS     = 'integration/general/exclude_products';
-    const XML_PATH_EXPORT_METHOD   = 'integration/general/export_method';
-    const XML_PATH_TURNAROUND_TIME = 'integration/general/turnaround_time';
-    const XML_PATH_ACTIVE_PRC      = 'integration/prc/show_prc';
-    const XML_PATH_WIDGET_TOKEN    = 'integration/prc/widget_token';
+    const XML_PATH_SHOP_ID         = 'ekomiintegration/general/shop_id';
+    const XML_PATH_SHOP_PASSWORD   = 'ekomiintegration/general/shop_password';
+    const XML_PATH_PRODUCT_REVIEWS = 'ekomiintegration/general/product_reviews';
+    const XML_PATH_ORDER_STATUS    = 'ekomiintegration/general/order_status';
+    const XML_PATH_ACTIVE          = 'ekomiintegration/general/active';
+    const XML_PATH_REVIEW_MOD      = 'ekomiintegration/general/review_mod';
+    const XML_PATH_IDENTIFIER      = 'ekomiintegration/general/product_identifier';
+    const XML_PATH_EXCLUDE_IDS     = 'ekomiintegration/general/exclude_products';
+    const XML_PATH_EXPORT_METHOD   = 'ekomiintegration/general/export_method';
+    const XML_PATH_TURNAROUND_TIME = 'ekomiintegration/general/turnaround_time';
+    const XML_PATH_ACTIVE_PRC      = 'ekomiintegration/prc/show_prc';
+    const XML_PATH_WIDGET_TOKEN    = 'ekomiintegration/prc/widget_token';
     const XML_PATH_STORE_NAME      = 'trans_email/ident_support/name';
     const XML_PATH_STORE_EMAIL     = 'trans_email/ident_support/email';
-    const XML_PATH_TERMS_CONDITION = 'integration/general/terms_and_conditions';
+    const XML_PATH_TERMS_CONDITION = 'ekomiintegration/general/terms_and_conditions';
 
     /**
      * @var ScopeConfigInterface
