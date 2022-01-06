@@ -143,7 +143,7 @@ class Validate extends \Magento\Framework\App\Config\Value
     private function verifyAccount($shopId, $shopPassword)
     {
         $apiUrl = self::GET_SETTINGS_API_URL . "?auth=" . $shopId . "|" . $shopPassword .
-            "&version=cust-1.0.0&type=request&charset=iso";
+            "&version=cust-1.0.0&type=request&charset=iso&app=PD-Magento-2";
 
         $this->curl->setOption(CURLOPT_RETURNTRANSFER, true);
         $this->curl->get($apiUrl);
