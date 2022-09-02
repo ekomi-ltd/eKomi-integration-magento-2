@@ -235,7 +235,7 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 
 · Development status: Stable
 
-· Last modified: 2022-Jan-06
+· Last modified: 2022-Sep-02
 
   
 
@@ -244,26 +244,27 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 ##### Recommended releases
 
  
-| Version        | Download         | Date         |
-| -------------  |:-------------:   | :-----------:|
-| 1.1.0          | zip (11.3 kB)    | 2016-Oct-27  |
-| 1.3.0          | zip (15.3 kB)    | 2018-Sep-01  |
-| 2.0.0          | zip (20.1 kB)    | 2018-Nov-12  |
-| 2.0.1          | zip (20.0 kB)    | 2018-Dec-04  |
-| 2.1.0          | zip (20.8 kB)    | 2019-Jan-10  |
-| 2.2.0          | zip (28.5 kB)    | 2019-Apr-30  |
-| 2.2.1          | zip (29.4 kB)    | 2019-May-07  |
-| 2.3.0          | zip (28.1 kB)    | 2019-May-22  |
-| 2.3.1          | zip (28.1 kB)    | 2019-Sep-26  |
-| 2.3.2          | zip (28.1 kB)    | 2019-Oct-02  |
-| 2.3.3          | zip (28.1 kB)    | 2019-Dec-06  |
-| 2.4.0          | zip (29.4 kB)    | 2020-Apr-02  |
-| 2.5.0          | zip (29.5 kB)    | 2020-Jul-23  |
-| 2.5.1          | zip (170.9 kB)   | 2021-Feb-16  |
-| 2.5.2          | zip (170.9 kB)   | 2021-Mar-25  |
-| 2.5.3          | zip (170.9 kB)   | 2021-Mar-26  |
-| 2.5.4          | zip (170.9 kB)   | 2021-Mar-27  |
-| 2.5.6          | zip (170.9 kB)   | 2021-Mar-27  |
-| 2.5.7          | zip (171.0 kB)   | 2021-Apr-05  |
-| 2.5.8          | zip (171.0 kB)   | 2021-Jun-08  |
-| 2.5.9          | zip (171.7 kB)   | 2022-Jan-06  |
+| Version        | Download         |    Date     |
+| -------------  |:-------------:   |:-----------:|
+| 1.1.0          | zip (11.3 kB)    | 2016-Oct-27 |
+| 1.3.0          | zip (15.3 kB)    | 2018-Sep-01 |
+| 2.0.0          | zip (20.1 kB)    | 2018-Nov-12 |
+| 2.0.1          | zip (20.0 kB)    | 2018-Dec-04 |
+| 2.1.0          | zip (20.8 kB)    | 2019-Jan-10 |
+| 2.2.0          | zip (28.5 kB)    | 2019-Apr-30 |
+| 2.2.1          | zip (29.4 kB)    | 2019-May-07 |
+| 2.3.0          | zip (28.1 kB)    | 2019-May-22 |
+| 2.3.1          | zip (28.1 kB)    | 2019-Sep-26 |
+| 2.3.2          | zip (28.1 kB)    | 2019-Oct-02 |
+| 2.3.3          | zip (28.1 kB)    | 2019-Dec-06 |
+| 2.4.0          | zip (29.4 kB)    | 2020-Apr-02 |
+| 2.5.0          | zip (29.5 kB)    | 2020-Jul-23 |
+| 2.5.1          | zip (170.9 kB)   | 2021-Feb-16 |
+| 2.5.2          | zip (170.9 kB)   | 2021-Mar-25 |
+| 2.5.3          | zip (170.9 kB)   | 2021-Mar-26 |
+| 2.5.4          | zip (170.9 kB)   | 2021-Mar-27 |
+| 2.5.6          | zip (170.9 kB)   | 2021-Mar-27 |
+| 2.5.7          | zip (171.0 kB)   | 2021-Apr-05 |
+| 2.5.8          | zip (171.0 kB)   | 2021-Jun-08 |
+| 2.5.9          | zip (171.7 kB)   | 2022-Jan-06 |
+| 2.5.10         | zip (172.0 kB)   | 2022-Sep-02 |
