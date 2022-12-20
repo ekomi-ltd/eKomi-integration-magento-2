@@ -93,7 +93,7 @@ class Data extends AbstractHelper
      */
     public function getOrderStatus($storeId = false)
     {
-        return $this->getConfigValue(
+        return (string)$this->getConfigValue(
             self::XML_PATH_ORDER_STATUS,
             $storeId
         );
