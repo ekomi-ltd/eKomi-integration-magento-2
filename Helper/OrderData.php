@@ -155,7 +155,7 @@ class OrderData extends AbstractHelper
                 'sku' => $product->getSku(),
                 'type' => $product->getTypeId(),
                 'name' => $product->getName(),
-                'description' => htmlspecialchars($product->getDescription()),
+                'description' => htmlspecialchars((string)$product->getDescription()),
                 'url' => $product->getUrl(),
                 'image_url' => $image_url,
                 'canonicalUrl' => $canonicalUrl,
