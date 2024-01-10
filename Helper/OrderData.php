@@ -146,7 +146,7 @@ class OrderData extends AbstractHelper
                 $store = $order->getStore();
                 $baseUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
                 $imageUrl = $baseUrl . 'catalog/product' . $product->getImage();
-                $image_url = utf8_decode($imageUrl);
+                $image_url = mb_convert_encoding($imageUrl, 'UTF-8', 'ISO-8859-1');
             }
             $canonicalUrl = $product->getUrlModel()->getUrl($product, ['_ignore_category' => true]);
 
