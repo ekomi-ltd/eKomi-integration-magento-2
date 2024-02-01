@@ -25,9 +25,9 @@ class Mod implements ArrayInterface
     public function toOptionArray()
     {
         return $mod = [
-            ['value' => 'email', 'label' => 'Email'],
-            ['value' => 'sms', 'label' => 'SMS'],
-            ['value' => 'fallback', 'label' => 'SMS if contact number valid, otherwise Email']
+            ['value' => 'email', 'label' => __('Email')],
+            ['value' => 'sms', 'label' => __('SMS')],
+            ['value' => 'fallback', 'label' => __('SMS if contact number valid, otherwise Email')]
         ];
     }
 }

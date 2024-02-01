@@ -45,7 +45,7 @@ class Dropdown implements ArrayInterface
         foreach ($labels as $status) {
             $statuses[] = [
                 'value' => $status['value'],
-                'label' => $status['label']
+                'label' => __($status['label'])
             ];
         }
 
