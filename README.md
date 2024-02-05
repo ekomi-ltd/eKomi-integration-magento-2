@@ -11,7 +11,7 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 > support@ekomi.de, this is necessary to ensure everything has been set
 > up correctly and activated from eKomi’s side.
 
-  
+
 
 ## Key features
 
@@ -41,19 +41,19 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 - The parent /child review display
 
-  
-  
+
+
 
 ## System Requirements
 
 -   PHP version 5.0 or greater
-    
--   MySQL version 5.6 or greater
-    
--   Magento Version 2.x
-    
 
-  
+-   MySQL version 5.6 or greater
+
+-   Magento Version 2.x
+
+
+
 
 ## Installation
 
@@ -64,11 +64,11 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 **1.2** Execute the following commands respectively
 
     1.  composer config repositories.ekomi vcs https://github.com/ekomi-ltd/eKomi-integration-magento-2
-    
+
     2.  composer require ekomiltd/ekomiintegration
-        
+
     3.  php bin/magento setup:upgrade
-        
+
     4.  php bin/magento setup:di:compile
 
 
@@ -86,13 +86,13 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 **2.3** Execute the following commands respectively:
 
-    
+
     1.  php bin/magento module:enable Ekomi_EkomiIntegration --clear-static-content
-    
+
     2.  php bin/magento setup:upgrade
-        
+
     3.  php bin/magento setup:di:compile
-    
+
 
 **2.4** Refresh the Cache under System­ ⇾ Cache Management
 
@@ -100,7 +100,7 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 ![](https://lh4.googleusercontent.com/1046yZ1TKs5CTdZ3LCKypJt2SxVhuWfcxUiNCfP86VDUFb0mDial_KSJple4u-IG3A3D1WDAmzZ3UWGDFyPRYTNhBZNgGhG8EXh1B9Sx70xp0hLn2s-h8bLYBpfeGKaHnAWOetYY)
 
-  
+
 
 ## Configuration
 
@@ -112,27 +112,27 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 ![](https://lh4.googleusercontent.com/fAazQNmY4eU0TdvNgyNsRsX_fqFmEKDwx9zZg8dgSkzg4B2iU8UNJ4TmoNWvl4QZrEv_ld_Ppo1Cx8udJQzm4137Gxltrqb_ojhQnESHvT_3ammb-AgIeCYiK4o9d7XlVZwFfYnU)
 
- 
+
 -   Enabled: Set to Yes.
-    
+
 -   Product Base Reviews: If enabled, product attributes will also be sent to eKomi
-    
+
 -   i.e. Product ID, SKU, Name, Type, Image, and URL
- 
+
 -   Shop ID: Enter the Shop ID provided by eKomi.
-    
+
 -   Shop Password: Enter the Shop Password/Secret provided by eKomi.
-    
+
 -   Order Status: Choose Order Statuses on which you want to export order data to eKomi.
-    
+
 -   Review  Mode: for SMS, mobile number format should be according to E164.
-    
+
 -   Product Identifier: The attribute you want to use as the Product Identifier in the eKomi system.
-    
+
 -   Exclude Products: Comma separated product IDs/SKUs which should be excluded.
-    
+
 -   Terms and Conditions: If enabled, then sends order to eKomi System otherwise not.
-    
+
 -   Save the configuration
 
 > Note: Plugin will only be enabled if shop credentials are valid.
@@ -142,9 +142,9 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 ![](https://lh4.googleusercontent.com/-cy3V9N4NoMxsJ2hx3XagEa_9Zq_9i4u0CPTdULhjuJlQ0Ot50obRrR8HPxTazqC_sSPdOgNdYeZAB88njWpIAAl1Tb_zXabHlm8fcIM9iOuq68NZhQlu-G-CsLD0u1AGDtSUvBS)
 
 -   Show PRC: Set to Yes.
-    
+
 -   Widget Token: Enter the Widget Token provided by eKomi.
-   
+
 > Note: Ekomi Integration plugin should be enabled in order to display PRC.
 
 
@@ -158,31 +158,31 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 ![mtwo2.png](https://lh4.googleusercontent.com/diZ5QCNR8MURfrVH1hrBsd-sZrF5HzH2OOO_9sxlXlOCoGZdYckDDLQp38_QNcJl82No-ko60Rl5J57f1QR3FX-sn4OuSFMW_rW6LvILImjpMJczJFa5rYIMYxwUFFpFP78AvAtN)
 
 -   Type: Set eKomi Product Review Container
-    
+
 -   Design  Theme: Set the Current Theme
-    
+
 -   Press Continue
-    
+
 
 **1.2**  Storefront Properties
 
 ![Mtwo3.png](https://lh5.googleusercontent.com/kDJT2VCZomnGfQozwCAfPc_iOxpkb4QfQlbG_1nZoB9QaYiVifyOwK9oVIpksdHp4-dgzOEJNAUj8PwJAUBMg5mIofkHMlCBq5lmphuQbn4CwMKC-THWjMt36Yh7rHY74mBCXdT8)
 
 -   Fill the meta information i.e. Widget Title, Store Views, and Sort Order
-    
+
 
 **1.3** Add Layout Updates
 
 ![](https://lh5.googleusercontent.com/1MsZaeqv2IXsqBfa75QlyBpe0TUmUbXv8UaDgBeO8G81JDURjLiUxJdKRS597ucgNidsNlU3j1Ucy0iXMoqDu2L1HpoWmOoS4uoarfWia7Gp29mV-0hHObW_fPmND95CRpYC8xYH)
 
-  
+
 
 -   Display On: Select desired product page
-    
+
 -   Products: Select required products if any.
-    
+
 -   Container: Select the required position for the widget.
-    
+
 
 **1.4** Save the Widget Instance and the PRC will be displayed on the Store Front
 
@@ -190,44 +190,44 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 ### 2. Programmatically
 
- 
+
 **2.1** Insert the following shortcode in the product detail page template where you want to display the widget.
 
- 
+
 
     <?php echo $this->getLayout()
-    
+
     ->createBlock('Ekomi\EkomiIntegration\Block\Widget\Reviews')
-    
+
     ->setTemplate('Ekomi_EkomiIntegration::ekomi_sw_prc.phtml')
-    
+
     ->toHtml();
-    
+
     ?>
 
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
 
 The PRC Widget will be displayed as:
 
-  
+
 
 ![](https://lh3.googleusercontent.com/QxdvsFUG_5PPF47e_BDqiJ_I2JGAj_AISmr3WkAHCHhzaoo5oNIf18byUy5fp-y7rajlnwr0ag59UXZLb1_YzAQ9yAgIq-H0vCrLF_AHwA_N7zyQC1hghrgMQg1EKFk9RzoJYTD9)
 
-  
+
 
 ## Troubleshooting
 
 Our eKomi headquarters in Berlin is the best place to start if you need help with this plugin. There our technical support team will get you up and running in time. You can book assistance at: [http://ssi.ekomi.com/booking](http://ssi.ekomi.com/booking).
 
-  
-  
-  
+
+
+
 
 ## Plugin information
 
@@ -235,15 +235,15 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 
 · Development status: Stable
 
-· Last modified: 2023-Jan-31
+· Last modified: 2022-Jan-06
 
-  
+
 
 ### Downloads
 
 ##### Recommended releases
 
- 
+
 | Version |    Download    |    Date     |
 |---------|:--------------:|:-----------:|
 | 1.1.0   | zip (11.3 kB)  | 2016-Oct-27 |
