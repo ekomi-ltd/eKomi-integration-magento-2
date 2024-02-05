@@ -270,3 +270,4 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 | 2.5.10  | zip (172.0 kB) | 2022-Sep-02 |
 | 2.5.11  | zip (172.3 kB) | 2022-Dec-20 |
 | 2.5.12  | zip (172.3 kB) | 2023-Jan-31 |
+| 2.5.13  | zip (172.3 kB) | 2024-Feb-05 |
