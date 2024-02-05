@@ -26,19 +26,19 @@ class TurnaroundTime implements ArrayInterface
     public function toOptionArray()
     {
         return $mod = [
-            ['value' => '1', 'label' => '1 Day'],
-            ['value' => '2', 'label' => '2 Days'],
-            ['value' => '3', 'label' => '3 Days'],
-            ['value' => '4', 'label' => '4 Days'],
-            ['value' => '5', 'label' => '5 Days'],
-            ['value' => '6', 'label' => '6 Days'],
-            ['value' => '7', 'label' => '7 Days'],
-            ['value' => '8', 'label' => '8 Days'],
-            ['value' => '9', 'label' => '9 Days'],
-            ['value' => '10', 'label' => '10 Days'],
-            ['value' => '15', 'label' => '15 Days'],
-            ['value' => '20', 'label' => '20 Days'],
-            ['value' => '30', 'label' => '30 Days']
+            ['value' => '1', 'label' => __('1 Day')],
+            ['value' => '2', 'label' => __('2 Days')],
+            ['value' => '3', 'label' => __('3 Days')],
+            ['value' => '4', 'label' => __('4 Days')],
+            ['value' => '5', 'label' => __('5 Days')],
+            ['value' => '6', 'label' => __('6 Days')],
+            ['value' => '7', 'label' => __('7 Days')],
+            ['value' => '8', 'label' => __('8 Days')],
+            ['value' => '9', 'label' => __('9 Days')],
+            ['value' => '10', 'label' => __('10 Days')],
+            ['value' => '15', 'label' => __('15 Days')],
+            ['value' => '20', 'label' => __('20 Days')],
+            ['value' => '30', 'label' => __('30 Days')]
         ];
     }
 }

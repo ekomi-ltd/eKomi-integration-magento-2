@@ -26,8 +26,8 @@ class Identifier implements ArrayInterface
     public function toOptionArray()
     {
         return $mod = [
-            ['value' => 'id', 'label' => 'Product ID'],
-            ['value' => 'sku', 'label' => 'Product SKU']
+            ['value' => 'id', 'label' => __('Product ID')],
+            ['value' => 'sku', 'label' => __('Product SKU')]
         ];
     }
 }

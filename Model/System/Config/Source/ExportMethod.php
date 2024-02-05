@@ -26,8 +26,8 @@ class ExportMethod implements ArrayInterface
     public function toOptionArray()
     {
         return $mod = [
-            ['value' => 'status', 'label' => 'On Order Status Change'],
-            ['value' => 'cron', 'label' => 'Every 24 hours (Cron)']
+            ['value' => 'status', 'label' => __('On Order Status Change')],
+            ['value' => 'cron', 'label' => __('Every 24 hours (Cron)')]
         ];
     }
 }
