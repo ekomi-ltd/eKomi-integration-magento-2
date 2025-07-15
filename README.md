@@ -235,7 +235,7 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 
 · Development status: Stable
 
-· Last modified: 2022-Jan-06
+· Last modified: 2025-July-15
 
 
 
@@ -271,3 +271,4 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 | 2.5.11  | zip (172.3 kB) | 2022-Dec-20 |
 | 2.5.12  | zip (172.3 kB) | 2023-Jan-31 |
 | 2.5.13  | zip (172.3 kB) | 2024-Feb-05 |
+| 2.5.14  | zip (172.3 kB) | 2025-July-15 |
