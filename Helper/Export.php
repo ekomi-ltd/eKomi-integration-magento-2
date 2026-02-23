@@ -154,7 +154,7 @@ class Export extends AbstractHelper
             }
 
             $orderData = $this->orderDatahelper->getRequiredFields($order, $storeId);
-            if ($orderData != '') {
+            if ($orderData !== '') {
                 $response[$order->getIncrementId()] = $this->orderDatahelper->sendOrderData($orderData);
             }
         }

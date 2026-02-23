@@ -65,7 +65,7 @@ class Reviews extends \Magento\Framework\View\Element\Template implements \Magen
         $productsData = $this->getProductsDataByType($this->_registry->registry('product'));
         $productIdentifier = $this->_helper->getProductIdentifier($this->getStoreId());
 
-        if ($productIdentifier == self::PRODUCT_IDENTIFIER_SKU) {
+        if ($productIdentifier === self::PRODUCT_IDENTIFIER_SKU) {
             return  implode(',', $productsData[self::IDENTIFIER_SKU]);
         }
 
@@ -84,17 +84,17 @@ class Reviews extends \Magento\Framework\View\Element\Template implements \Magen
         $productsData[self::IDENTIFIER_SKU][] = $product->getSku();
 
         $productType = $product->getTypeId();
-        if ($productType == self::PRODUCT_TYPE_GROUPED) {
+        if ($productType === self::PRODUCT_TYPE_GROUPED) {
             $associatedProducts = $product->getTypeInstance(true)->getAssociatedProducts($product);
-        } elseif ($productType == self::PRODUCT_TYPE_BUNDLE) {
+        } elseif ($productType === self::PRODUCT_TYPE_BUNDLE) {
             $associatedProducts = $product->getTypeInstance(true)->getSelectionsCollection(
                 $product->getTypeInstance(true)->getOptionsIds($product), $product
             );
-        } elseif ($productType == self::PRODUCT_TYPE_CONFIGURABLE) {
+        } elseif ($productType === self::PRODUCT_TYPE_CONFIGURABLE) {
             $associatedProducts = $product->getTypeInstance(true)->getUsedProducts($product);
         }
 
-        foreach($associatedProducts as $associatedProduct) {
+        foreach ($associatedProducts as $associatedProduct) {
             $productsData[self::IDENTIFIER_IDS][] = $associatedProduct->getId();
             $productsData[self::IDENTIFIER_SKU][] = $associatedProduct->getSku();
         }
