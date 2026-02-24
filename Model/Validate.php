@@ -107,18 +107,18 @@ class Validate extends \Magento\Framework\App\Config\Value
 
         if (isset($postValues['shop_id']['value'])) {
             $shopId = $postValues['shop_id']['value'];
-        } elseif (isset($postValues['shop_id']['inherit']) && $postValues['shop_id']['inherit'] === 1) {
+        } elseif (isset($postValues['shop_id']['inherit']) && $postValues['shop_id']['inherit'] == 1) {
             $shopId = $this->dataHelper->getShopId($storeId);
         }
 
         if (isset($postValues['shop_password']['value'])) {
             $shopPassword = $postValues['shop_password']['value'];
-        } elseif (isset($postValues['shop_password']['inherit']) && $postValues['shop_password']['inherit'] === 1) {
+        } elseif (isset($postValues['shop_password']['inherit']) && $postValues['shop_password']['inherit'] == 1) {
             $shopPassword = $this->dataHelper->getShopPw($storeId);
         }
 
         $serverOutput = $this->verifyAccount($shopId, $shopPassword);
-        if ($serverOutput === null || $serverOutput === self::ACCESS_DENIED_RESPONSE) {
+        if ($serverOutput == null || $serverOutput == self::ACCESS_DENIED_RESPONSE) {
             $this->setValue(0);
             $errorMsg = 'Access denied, Invalid Shop ID or Password';
             $phrase = new Phrase($errorMsg);
@@ -186,7 +186,7 @@ class Validate extends \Magento\Framework\App\Config\Value
     public function getDefaultSegmentKey($customerSegments)
     {
         foreach ($customerSegments as $key => $customerSegment) {
-            if ($customerSegment['is_default'] === 'true') {
+            if ($customerSegment['is_default'] == 'true') {
                 return $key;
             }
         }

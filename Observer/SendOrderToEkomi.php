@@ -66,7 +66,7 @@ class SendOrderToEkomi implements ObserverInterface
         }
 
         $orderData = $this->orderDataHelper->getRequiredFields($order, $storeId);
-        if ($orderData !== '') {
+        if ($orderData != '') {
             $response = $this->orderDataHelper->sendOrderData($orderData);
         }
 

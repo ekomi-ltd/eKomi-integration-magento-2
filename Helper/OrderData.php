@@ -142,7 +142,7 @@ class OrderData extends AbstractHelper
             }
 
             $image_url = '';
-            if ($product->getThumbnail() !== 'no_selection') {
+            if ($product->getThumbnail() != 'no_selection') {
                 $store = $order->getStore();
                 $baseUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
                 $imageUrl = $baseUrl . 'catalog/product' . $product->getImage();
