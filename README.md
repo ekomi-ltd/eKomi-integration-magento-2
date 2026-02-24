@@ -46,7 +46,7 @@ The eKomi product review container allows an easy integration of eKomi Reviews a
 
 ## System Requirements
 
--   PHP version 5.0 or greater
+-   PHP version 5.5 or greater (including PHP 8.0, 8.1, 8.2, 8.3, 8.4)
 
 -   MySQL version 5.6 or greater
 
@@ -235,7 +235,7 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 
 · Development status: Stable
 
-· Last modified: 2025-July-15
+· Last modified: 2026-Feb-24
 
 
 
@@ -271,4 +271,5 @@ Our eKomi headquarters in Berlin is the best place to start if you need help wit
 | 2.5.11  | zip (172.3 kB) | 2022-Dec-20 |
 | 2.5.12  | zip (172.3 kB) | 2023-Jan-31 |
 | 2.5.13  | zip (172.3 kB) | 2024-Feb-05 |
-| 2.5.14  | zip (172.3 kB) | 2025-July-15 |
+| 2.5.14  | zip (172.3 kB) | 2025-Jul-15 |
+| 2.5.15  | zip (172.5 kB) | 2026-Feb-24 |
