@@ -94,7 +94,7 @@ class Reviews extends \Magento\Framework\View\Element\Template implements \Magen
             $associatedProducts = $product->getTypeInstance(true)->getUsedProducts($product);
         }
 
-        foreach($associatedProducts as $associatedProduct) {
+        foreach ($associatedProducts as $associatedProduct) {
             $productsData[self::IDENTIFIER_IDS][] = $associatedProduct->getId();
             $productsData[self::IDENTIFIER_SKU][] = $associatedProduct->getSku();
         }

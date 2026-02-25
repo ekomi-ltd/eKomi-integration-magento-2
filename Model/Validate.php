@@ -82,8 +82,8 @@ class Validate extends \Magento\Framework\App\Config\Value
         Curl $curl,
         DataHelper $dataHelper,
         ManagerInterface $messageManager,
-        AbstractResource $resource = null,
-        AbstractDb $resourceCollection = null,
+        ?AbstractResource $resource = null,
+        ?AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->request = $request;
@@ -185,10 +185,10 @@ class Validate extends \Magento\Framework\App\Config\Value
      */
     public function getDefaultSegmentKey($customerSegments)
     {
-        foreach($customerSegments as $key => $customerSegment)
-        {
-            if ( $customerSegment['is_default'] == 'true' )
+        foreach ($customerSegments as $key => $customerSegment) {
+            if ($customerSegment['is_default'] == 'true') {
                 return $key;
+            }
         }
 
         return false;

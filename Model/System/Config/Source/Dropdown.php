@@ -41,6 +41,7 @@ class Dropdown implements ArrayInterface
      */
     public function toOptionArray()
     {
+        $statuses = [];
         $labels = $this->statusCollectionFactory->create()->toOptionArray();
         foreach ($labels as $status) {
             $statuses[] = [
