@@ -101,6 +101,10 @@ class Validate extends \Magento\Framework\App\Config\Value
      */
     public function beforeSave()
     {
+        if($this->isCommandLine()) {
+            return parent::beforeSave();
+        }
+        
         $postData = $this->request->getPostValue();
         $postValues = $postData['groups']['general']['fields'];
         $storeId = $this->request->getParam('store', 0);
@@ -131,6 +135,14 @@ class Validate extends \Magento\Framework\App\Config\Value
 
             return parent::beforeSave();
         }
+    }
+
+    /**
+     * Detect command line call.
+     * @return void
+     */
+    public function isCommandLine() {
+        return 'bin/magento' === $this->request->getServerValue('_');
     }
 
     /**
