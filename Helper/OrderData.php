@@ -188,7 +188,7 @@ class OrderData extends AbstractHelper
             $this->curl->post(self::PD_ORDERS_API_URL, $orderData);
             $response = $this->curl->getBody();
         } catch (\Exception $e) {
-            $this->logger->addError($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
 
         return $response;
