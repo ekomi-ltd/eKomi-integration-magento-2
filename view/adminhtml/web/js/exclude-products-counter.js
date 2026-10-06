@@ -3,7 +3,7 @@
  * Attaches a live counter and red-highlight to the Exclude Products field
  * in the Magento 2 admin system config.
  */
-require(['jquery', 'domReady!'], function ($) {
+require(['jquery', 'mage/translate', 'domReady!'], function ($, $t) {
     'use strict';
 
     var MAX_LENGTH = 255;
@@ -23,7 +23,7 @@ require(['jquery', 'domReady!'], function ($) {
         var $error = $('<span>', {
             id:    FIELD_ID + '_error',
             style: 'display:none;font-size:12px;margin-top:3px;color:#e22626;font-weight:bold;',
-            text:  'Exclude Products must not exceed 255 characters.'
+            text:  $t('Exclude Products must not exceed %1 characters. Current length: %2.').replace('%1', MAX_LENGTH).replace('%2', '')
         });
 
         $input.after($error).after($counter);
@@ -31,6 +31,7 @@ require(['jquery', 'domReady!'], function ($) {
         function update() {
             var len = $input.val().length;
             $counter.text(len + '/' + MAX_LENGTH);
+            $error.text($t('Exclude Products must not exceed %1 characters. Current length: %2.').replace('%1', MAX_LENGTH).replace('%2', len));
 
             if (len > MAX_LENGTH) {
                 $input.css({'border-color': '#e22626', 'box-shadow': '0 0 0 1px #e22626'});
