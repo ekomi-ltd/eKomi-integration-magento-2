@@ -22,8 +22,7 @@ require(['jquery', 'mage/translate', 'domReady!'], function ($, $t) {
         });
         var $error = $('<span>', {
             id:    FIELD_ID + '_error',
-            style: 'display:none;font-size:12px;margin-top:3px;color:#e22626;font-weight:bold;',
-            text:  $t('Exclude Products must not exceed %1 characters. Current length: %2.').replace('%1', MAX_LENGTH).replace('%2', '')
+            style: 'display:none;font-size:12px;margin-top:3px;color:#e22626;font-weight:bold;'
         });
 
         $input.after($error).after($counter);

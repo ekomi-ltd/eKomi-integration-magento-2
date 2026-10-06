@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Loads the Exclude Products character counter JS on the system config edit page.
+ * Loads the Exclude Products character counter JS only on the eKomi Integration config section.
+ * The handle adminhtml_system_config_edit_section_ekomiintegration fires only when the
+ * "ekomiintegration" section is open, avoiding loading the JS on every admin config page.
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
