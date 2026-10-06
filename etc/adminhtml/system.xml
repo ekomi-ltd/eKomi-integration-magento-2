@@ -59,9 +59,8 @@
                 <field id="exclude_products" translate="label" type="text" sortOrder="15"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Exclude Products</label>
-                    <comment><![CDATA[Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi (max 255 characters). <span id="ekomi_exclude_products_counter" style="font-weight:bold;"></span>]]></comment>
+                    <comment>Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi (max 255 characters)</comment>
                     <backend_model>Ekomi\EkomiIntegration\Model\System\Config\Backend\ExcludeProducts</backend_model>
-                    <validate>validate-ekomi-exclude-products-length</validate>
                 </field>
                 <field id="export_method" translate="label" type="select" sortOrder="17"
                        showInDefault="1" showInWebsite="1" showInStore="1">
