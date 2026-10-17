@@ -53,3 +53,5 @@
 "20 Days","20 Days"
 "30 Days","30 Days"
 "Access denied, Invalid Shop ID or Password","Access denied, Invalid Shop ID or Password"
+"Exclude Products must not exceed %1 characters. Current length: %2.","Exclude Products must not exceed %1 characters. Current length: %2."
+"Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi (max 255 characters)","Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi (max 255 characters)"
