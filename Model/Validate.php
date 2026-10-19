@@ -104,6 +104,8 @@ class Validate extends \Magento\Framework\App\Config\Value
         $postData = $this->request->getPostValue();
         $postValues = $postData['groups']['general']['fields'];
         $storeId = $this->request->getParam('store', 0);
+        $shopId = null;
+        $shopPassword = null;
 
         if (isset($postValues['shop_id']['value'])) {
             $shopId = $postValues['shop_id']['value'];
