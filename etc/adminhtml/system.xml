@@ -25,6 +25,7 @@
                 <field id="product_reviews" translate="label" type="select" sortOrder="3"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Product Base Reviews</label>
+                    <comment>Collect product-level reviews in addition to seller reviews</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="shop_id" translate="label" type="text" sortOrder="5"
@@ -36,6 +37,7 @@
                 <field id="shop_password" translate="label" type="text" sortOrder="7"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Shop Password</label>
+                    <comment>Interface password received by eKomi</comment>
                     <validate>required-entry</validate>
                 </field>
                 <field id="order_status" translate="label" type="multiselect" sortOrder="9"
@@ -59,7 +61,9 @@
                 <field id="exclude_products" translate="label" type="text" sortOrder="15"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Exclude Products</label>
-                    <comment>Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi</comment>
+                    <comment>Comma separated list of product IDs/SKUs which should be excluded from product export to eKomi. Note: 255 Character Limit</comment>
+                    <validate>validate-length maximum-length-255</validate>
+                    <backend_model>Ekomi\EkomiIntegration\Model\ValidateExcludeProduct</backend_model>
                 </field>
                 <field id="export_method" translate="label" type="select" sortOrder="17"
                        showInDefault="1" showInWebsite="1" showInStore="1">
