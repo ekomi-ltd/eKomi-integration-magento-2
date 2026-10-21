@@ -22,104 +22,164 @@ if ($block->getRequest()->getParam('section') === 'ekomiintegration'): ?>
 }
 .ekomi-card-body td.label label span[data-config-scope]::after {
     content: " [STORE VIEW]";
-    font-size: 9.5px;
-    font-weight: 600;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 11px;
+    font-weight: 400;
+    color: #7d736b;
+    text-transform: none;
+    letter-spacing: normal;
     margin-left: 4px;
 }
 
-/* Branded Top Welcome Banner */
+/* Branded Top Welcome Banner - Styled with Magento 2 Theme Colors (Dark Orange & Light Cream) */
 .ekomi-brand-banner {
     display: flex;
     align-items: center;
     gap: 14px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 4px solid #0072F2;
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin-bottom: 24px;
+    background: #fff5ed;
+    border: 1px solid #f8cbb0;
+    border-left: 4px solid #eb5202;
+    border-radius: 2px;
+    padding: 12px 18px;
+    margin-bottom: 22px;
 }
 .ekomi-notice-icon {
     width: 24px;
     height: 24px;
-    color: #0072F2;
+    color: #eb5202;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 .ekomi-notice-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     display: block;
 }
 .ekomi-brand-text {
-    font-size: 13.5px;
+    font-size: 13px;
     line-height: 1.5;
-    color: #334155;
+    color: #303030;
 }
 .ekomi-brand-text a {
-    color: #0072F2;
+    color: #eb5202;
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: underline;
 }
 .ekomi-brand-text a:hover {
-    text-decoration: underline;
+    color: #ba4000;
 }
 
 /* Cards Container */
 .ekomi-cards-wrap {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 20px;
 }
 
-/* Individual Card */
+/* Individual Card - Modern Floating Shadow & Light Border */
 .ekomi-card {
     background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.04);
     overflow: visible;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-.ekomi-card:hover {
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.06);
-    border-color: #cbd5e1;
+    box-sizing: border-box;
 }
 
-/* Card Header */
+/* Card Header - Clean, No Tints or Outer Borders, Faint Gray Bottom Divider */
 .ekomi-card-header {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 16px 22px;
-    border-bottom: 1px solid #f1f5f9;
-    background: #fafbfc;
+    gap: 12px;
+    padding: 14px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #f3f4f6;
+    margin: 0;
     overflow: visible;
+    box-sizing: border-box;
 }
 .ekomi-card-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background: #fdf2ed;
+    color: #eb5202;
+    border: 1px solid #f5c4ac;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
 .ekomi-card-icon svg {
-    width: 19px;
-    height: 19px;
+    width: 17px;
+    height: 17px;
+}
+
+/* Section Headers - Clean White/Transparent Background with #f3f4f6 Divider */
+.ekomi-card-header-light,
+.ekomi-card-general .ekomi-card-header,
+.ekomi-card-product_reviews .ekomi-card-header,
+.ekomi-card-orders .ekomi-card-header {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+    margin: 0 !important;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    z-index: 1;
+}
+.ekomi-card-header-light .ekomi-card-title,
+.ekomi-card-general .ekomi-card-title,
+.ekomi-card-product_reviews .ekomi-card-title,
+.ekomi-card-orders .ekomi-card-title {
+    color: #303030 !important;
+}
+.ekomi-card-header-light .ekomi-card-subtitle,
+.ekomi-card-general .ekomi-card-subtitle,
+.ekomi-card-product_reviews .ekomi-card-subtitle,
+.ekomi-card-orders .ekomi-card-subtitle {
+    color: #666666 !important;
+}
+.ekomi-card-header-light .ekomi-card-icon,
+.ekomi-card-general .ekomi-card-icon,
+.ekomi-card-product_reviews .ekomi-card-icon,
+.ekomi-card-orders .ekomi-card-icon {
+    background: #fdf2ed !important;
+    color: #eb5202 !important;
+    border: 1px solid #f5c4ac !important;
+}
+
+/* Terms & Conditions Header */
+.ekomi-card-header-yellow,
+.ekomi-card-terms .ekomi-card-header {
+    background: #fff8db !important;
+    border: none !important;
+    border-bottom: 1px solid #f0d588 !important;
+    margin: 0 !important;
+    border-radius: 4px 4px 0 0;
+}
+.ekomi-card-header-yellow .ekomi-card-title,
+.ekomi-card-terms .ekomi-card-title {
+    color: #4a3800 !important;
+}
+.ekomi-card-header-yellow .ekomi-card-subtitle,
+.ekomi-card-terms .ekomi-card-subtitle {
+    color: #785c00 !important;
+}
+.ekomi-card-header-yellow .ekomi-card-icon,
+.ekomi-card-terms .ekomi-card-icon {
+    background: #ffe89e !important;
+    color: #b36b00 !important;
+    border: 1px solid #ebd073 !important;
 }
 
 /* Icon Badges Colors */
-.ekomi-icon-blue { background: #eff6ff; color: #2563eb; }
-.ekomi-icon-green { background: #f0fdf4; color: #16a34a; }
-.ekomi-icon-purple { background: #faf5ff; color: #9333ea; }
-.ekomi-icon-indigo { background: #eff6ff; color: #0072F2; }
+.ekomi-icon-neutral { background: #e8e8e8; color: #41362f; border: 1px solid #d6d6d6; }
+.ekomi-icon-phoenix { background: #fdf2ed; color: #eb5202; border: 1px solid #f5c4ac; }
+.ekomi-icon-phoenix-solid { background: #eb5202; color: #ffffff; border: none; }
+.ekomi-icon-yellow { background: #ffe89e; color: #b36b00; border: 1px solid #ebd073; }
 
 .ekomi-card-title-group {
     flex: 1;
@@ -127,20 +187,20 @@ if ($block->getRequest()->getParam('section') === 'ekomiintegration'): ?>
 .ekomi-card-title {
     margin: 0;
     font-size: 15px;
-    font-weight: 700;
-    color: #1e293b;
-    line-height: 1.25;
+    font-weight: 600;
+    color: #303030;
+    line-height: 1.3;
 }
 .ekomi-card-subtitle {
-    margin: 3px 0 0 0;
+    margin: 2px 0 0 0;
     font-size: 12px;
-    color: #64748b;
+    color: #666666;
     line-height: 1.35;
 }
 
 /* Card Body */
 .ekomi-card-body {
-    padding: 22px;
+    padding: 20px;
     overflow: visible;
 }
 
@@ -154,7 +214,7 @@ if ($block->getRequest()->getParam('section') === 'ekomiintegration'): ?>
 .ekomi-card-body table.form-list > tbody {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 20px 24px !important;
+    gap: 18px 24px !important;
     width: 100% !important;
 }
 
@@ -176,20 +236,20 @@ if ($block->getRequest()->getParam('section') === 'ekomiintegration'): ?>
     width: 100% !important;
 }
 
-/* Label Styling */
+/* Label Styling - Native Magento Admin Typography */
 .ekomi-card-body table.form-list > tbody > tr > td.label {
     display: block !important;
     width: 100% !important;
     text-align: left !important;
-    padding: 0 0 6px 0 !important;
+    padding: 0 0 5px 0 !important;
     float: none !important;
 }
 .ekomi-card-body table.form-list > tbody > tr > td.label label {
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    color: #475569 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    color: #303030 !important;
     margin: 0 !important;
     padding: 0 !important;
     display: inline-flex !important;
@@ -220,43 +280,43 @@ if ($block->getRequest()->getParam('section') === 'ekomiintegration'): ?>
 
 .ekomi-card-body td.value input[type="text"]:not(.ekomi-chip-input),
 .ekomi-card-body td.value input[type="password"] {
-    height: 38px;
-    border-radius: 6px;
-    border: 1px solid #cbd5e1;
+    height: 34px;
+    border-radius: 2px;
+    border: 1px solid #adadad;
     background-color: #ffffff;
-    padding: 6px 12px;
-    font-size: 13.5px;
-    color: #1e293b;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    padding: 5px 10px;
+    font-size: 13px;
+    color: #303030;
+    box-shadow: none;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .ekomi-card-body td.value select:not([multiple]) {
-    height: 38px;
-    border-radius: 6px;
-    border: 1px solid #cbd5e1;
+    height: 34px;
+    border-radius: 2px;
+    border: 1px solid #adadad;
     background-color: #ffffff;
-    padding: 6px 36px 6px 12px;
-    font-size: 13.5px;
-    color: #1e293b;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    padding: 5px 32px 5px 10px;
+    font-size: 13px;
+    color: #303030;
+    box-shadow: none;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23514943' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 16px;
+    background-position: right 10px center;
+    background-size: 14px;
     cursor: pointer;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Hover & Focus States */
+/* Hover & Focus States - Magento Phoenix Orange */
 .ekomi-card-body td.value input[type="text"]:hover,
 .ekomi-card-body td.value input[type="password"]:hover,
 .ekomi-card-body td.value select:not([multiple]):hover,
 .ekomi-card-body .ekomi-multiselect-toggle:hover,
 .ekomi-card-body .ekomi-chips-wrap:hover {
-    border-color: #94a3b8 !important;
+    border-color: #eb5202 !important;
 }
 
 .ekomi-card-body td.value input[type="text"]:focus,
@@ -265,8 +325,8 @@ if ($block->getRequest()->getParam('section') === 'ekomiintegration'): ?>
 .ekomi-card-body .ekomi-multiselect-toggle:focus,
 .ekomi-card-body .ekomi-multiselect-dropdown-wrap.is-open .ekomi-multiselect-toggle,
 .ekomi-card-body .ekomi-chips-wrap.is-focused {
-    border-color: #0072F2 !important;
-    box-shadow: 0 0 0 3px rgba(0, 114, 242, 0.15) !important;
+    border-color: #eb5202 !important;
+    box-shadow: 0 0 0 1px #eb5202 !important;
     outline: none !important;
 }
 
@@ -274,15 +334,18 @@ if ($block->getRequest()->getParam('section') === 'ekomiintegration'): ?>
 .ekomi-card-body td.value .note {
     display: block !important;
     font-size: 12px !important;
-    color: #64748b !important;
-    margin-top: 5px !important;
-    line-height: 1.45 !important;
+    color: #666666 !important;
+    margin-top: 4px !important;
+    line-height: 1.4 !important;
     max-width: 100% !important;
 }
 .ekomi-card-body td.value .note a {
-    color: #0072F2;
+    color: #eb5202;
     font-weight: 500;
     text-decoration: underline;
+}
+.ekomi-card-body td.value .note a:hover {
+    color: #ba4000;
 }
 
 /* Hide empty scope/default cells */
@@ -307,31 +370,31 @@ input#ekomiintegration_general_exclude_products {
 }
 .ekomi-password-wrap input {
     width: 100% !important;
-    padding-right: 40px !important;
+    padding-right: 36px !important;
 }
 .ekomi-password-toggle {
     position: absolute;
-    right: 8px;
+    right: 6px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #64748b;
-    border-radius: 4px;
+    color: #666666;
+    border-radius: 2px;
     transition: color 0.15s ease;
     z-index: 2;
 }
 .ekomi-password-toggle:hover {
-    color: #0072F2;
+    color: #eb5202;
 }
 .ekomi-password-toggle svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 /* Order Status Multiselect Dropdown */
@@ -349,32 +412,33 @@ input#ekomiintegration_general_exclude_products {
     text-overflow: ellipsis;
     white-space: nowrap;
     user-select: none;
-    height: 38px;
-    line-height: 24px;
-    font-size: 13.5px;
-    border-radius: 6px !important;
-    border: 1px solid #cbd5e1 !important;
+    height: 34px;
+    line-height: 22px;
+    font-size: 13px;
+    color: #303030 !important;
+    border-radius: 2px !important;
+    border: 1px solid #adadad !important;
     background-color: #ffffff !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-    padding: 6px 36px 6px 12px !important;
+    box-shadow: none;
+    padding: 5px 32px 5px 10px !important;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23514943' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 16px;
+    background-position: right 10px center;
+    background-size: 14px;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .ekomi-multiselect-placeholder {
-    color: #94a3b8;
+    color: #7d736b;
 }
 .ekomi-multiselect-count-badge {
-    background: #0072F2;
-    color: #fff;
+    background: #eb5202;
+    color: #ffffff;
     font-size: 11px;
     font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 10px;
+    padding: 1px 6px;
+    border-radius: 2px;
     margin-right: 6px;
 }
 .ekomi-multiselect-menu {
@@ -383,11 +447,11 @@ input#ekomiintegration_general_exclude_products {
     left: 0;
     width: 100% !important;
     box-sizing: border-box !important;
-    margin-top: 4px;
+    margin-top: 2px;
     background: #ffffff;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    border: 1px solid #adadad;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
     max-height: 240px;
     overflow-y: auto;
     z-index: 1000;
@@ -395,33 +459,35 @@ input#ekomiintegration_general_exclude_products {
 }
 .ekomi-multiselect-dropdown-wrap.is-open .ekomi-multiselect-menu {
     display: block;
+    border-color: #eb5202;
 }
 .ekomi-multiselect-item {
     display: flex;
     align-items: center;
-    padding: 8px 12px;
+    padding: 7px 10px;
     cursor: pointer;
-    font-size: 13.5px;
-    color: #1e293b;
+    font-size: 13px;
+    color: #303030;
     user-select: none;
-    border-bottom: 1px solid #f8fafc;
+    border-bottom: 1px solid #f0f0f0;
     transition: background 0.1s ease;
 }
 .ekomi-multiselect-item:last-child {
     border-bottom: none;
 }
 .ekomi-multiselect-item:hover {
-    background: #f0f7ff;
-    color: #0072F2;
+    background: #fdf2ed;
+    color: #eb5202;
 }
 .ekomi-multiselect-item.is-selected {
-    background: #e6f2ff;
-    color: #0056b3;
-    font-weight: 500;
+    background: #fdf2ed;
+    color: #303030;
+    font-weight: 600;
 }
 .ekomi-multiselect-item input[type="checkbox"] {
-    margin: 0 10px 0 0;
+    margin: 0 8px 0 0;
     cursor: pointer;
+    accent-color: #eb5202;
 }
 .ekomi-multiselect-item-label {
     flex: 1;
@@ -433,92 +499,116 @@ input#ekomiintegration_general_exclude_products {
     flex-wrap: wrap;
     align-items: center;
     gap: 6px;
-    padding: 4px 8px;
-    min-height: 38px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
+    padding: 4px 6px;
+    min-height: 34px;
+    border: 1px solid #adadad;
+    border-radius: 2px;
     background-color: #ffffff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    box-shadow: none;
     cursor: text;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.ekomi-chips-wrap.is-error {
+    border-color: #e22626 !important;
+}
+.ekomi-chips-wrap.is-error.is-focused {
+    border-color: #e22626 !important;
+    box-shadow: 0 0 0 1px #e22626 !important;
+}
+.ekomi-chips-error {
+    display: none;
+    color: #e22626;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.3;
 }
 .ekomi-chip {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    background: #eff6ff;
-    color: #1e40af;
-    border: 1px solid #bfdbfe;
-    border-radius: 4px;
-    padding: 2px 7px;
+    gap: 6px;
+    background: #fff4ea;
+    color: #b83d00;
+    border: 1px solid #eb5202;
+    border-radius: 2px;
+    padding: 2px 8px;
     font-size: 12px;
     font-weight: 600;
+    box-shadow: 0 1px 2px rgba(235, 82, 2, 0.08);
 }
 .ekomi-chip-remove {
     background: none;
     border: none;
-    color: #3b82f6;
+    color: #eb5202;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 700;
     padding: 0;
     line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .ekomi-chip-remove:hover {
-    color: #ef4444;
+    color: #872500;
 }
 .ekomi-chip-input {
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
-    padding: 4px !important;
-    font-size: 13.5px !important;
+    padding: 3px 4px !important;
+    font-size: 13px !important;
     flex: 1;
     min-width: 140px;
-    height: 28px !important;
+    height: 24px !important;
     background: transparent !important;
-    color: #1e293b;
+    color: #303030;
 }
 
-/* Card 4: Terms & Conditions Compliance Box (Original design, no yellow alert) */
+/* Card 4: Terms & Conditions Compliance Box */
+.ekomi-card-terms {
+    background: #fffdf5 !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.04) !important;
+}
 .ekomi-terms-box {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-left: 4px solid #0072F2;
-    border-radius: 8px;
-    padding: 16px 20px;
+    background: #fffde8;
+    border: 1px solid #ebd073;
+    border-left: 4px solid #eb5202;
+    border-radius: 2px;
+    padding: 14px 18px;
 }
 .ekomi-terms-box-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 12px;
-    margin-bottom: 14px;
-    border-bottom: 1px solid #edf2f7;
+    padding-bottom: 10px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #fae8a8;
 }
 .ekomi-terms-box-title {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 13px;
-    color: #1e293b;
+    color: #4a3800;
     text-transform: uppercase;
     letter-spacing: 0.03em;
 }
 .ekomi-terms-box-title svg {
-    width: 17px;
-    height: 17px;
-    color: #0072F2;
+    width: 16px;
+    height: 16px;
+    color: #eb5202;
     flex-shrink: 0;
 }
 .ekomi-terms-badge {
-    background: #eff6ff;
-    color: #0072F2;
-    border: 1px solid #bfdbfe;
+    background: #eb5202;
+    color: #ffffff;
+    border: 1px solid #d44700;
     font-size: 10.5px;
     font-weight: 700;
     padding: 2px 8px;
-    border-radius: 12px;
+    border-radius: 2px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -564,11 +654,12 @@ require(['jquery', 'domReady!'], function ($) {
         }
     });
 
-    // 3. Define Card Metadata & Icons
+    // 3. Define Card Metadata & Icons (Alternating Dark / Light headers)
     var cardsConfig = [
         {
             id: 'general',
-            iconColor: 'ekomi-icon-blue',
+            headerClass: 'ekomi-card-header-light',
+            iconColor: 'ekomi-icon-phoenix',
             iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>',
             title: 'General Settings',
             subtitle: 'Enable plugin and set review delivery mode',
@@ -581,7 +672,8 @@ require(['jquery', 'domReady!'], function ($) {
         },
         {
             id: 'product_reviews',
-            iconColor: 'ekomi-icon-green',
+            headerClass: 'ekomi-card-header-light',
+            iconColor: 'ekomi-icon-phoenix',
             iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
             title: 'Product Reviews',
             subtitle: 'Configure product-level review collection and identifiers',
@@ -593,7 +685,8 @@ require(['jquery', 'domReady!'], function ($) {
         },
         {
             id: 'orders',
-            iconColor: 'ekomi-icon-purple',
+            headerClass: 'ekomi-card-header-light',
+            iconColor: 'ekomi-icon-phoenix',
             iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
             title: 'Order Trigger & Export',
             subtitle: 'Select which order statuses trigger a review invitation and timing',
@@ -605,7 +698,8 @@ require(['jquery', 'domReady!'], function ($) {
         },
         {
             id: 'terms',
-            iconColor: 'ekomi-icon-indigo',
+            headerClass: 'ekomi-card-header-yellow',
+            iconColor: 'ekomi-icon-yellow',
             iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>',
             title: 'Terms & Conditions',
             subtitle: 'Service compliance and order export agreement',
@@ -620,8 +714,9 @@ require(['jquery', 'domReady!'], function ($) {
 
     cardsConfig.forEach(function (card) {
         var $card = $('<div class="ekomi-card ekomi-card-' + card.id + '"></div>');
+        var headerClass = card.headerClass ? (' ' + card.headerClass) : '';
         var $header = $(
-            '<div class="ekomi-card-header">' +
+            '<div class="ekomi-card-header' + headerClass + '">' +
             '  <div class="ekomi-card-icon ' + card.iconColor + '">' + card.iconSvg + '</div>' +
             '  <div class="ekomi-card-title-group">' +
             '    <h3 class="ekomi-card-title">' + card.title + '</h3>' +
@@ -709,11 +804,13 @@ require(['jquery', 'domReady!'], function ($) {
             if (selectedLabels.length === 0) {
                 $toggle.html('<span class="ekomi-multiselect-placeholder">-- Select Order Statuses --</span>');
                 $toggle.removeAttr('title');
-            } else if (selectedLabels.length <= 2) {
+            } else if (selectedLabels.length < 4) {
                 $toggle.text(selectedLabels.join(', '));
                 $toggle.attr('title', selectedLabels.join(', '));
             } else {
-                $toggle.html('<span class="ekomi-multiselect-count-badge">' + selectedLabels.length + '</span> ' + selectedLabels.slice(0, 2).join(', ') + '...');
+                var suffix = selectedLabels.length > 5 ? '...' : '';
+                var visibleLabels = selectedLabels.slice(0, 5).join(', ') + suffix;
+                $toggle.html('<span class="ekomi-multiselect-count-badge">' + selectedLabels.length + '</span> ' + $('<div>').text(visibleLabels).html());
                 $toggle.attr('title', selectedLabels.join(', '));
             }
 
@@ -790,6 +887,17 @@ require(['jquery', 'domReady!'], function ($) {
 
         var $chipsWrap = $('<div class="ekomi-chips-wrap"></div>');
         var $chipInputField = $('<input type="text" class="ekomi-chip-input" placeholder="e.g. 101, 205, 310 (Type SKU or ID & press Enter)">');
+        var $errorMsg = $('<div class="mage-error ekomi-chips-error"><?= $block->escapeJs(__('Error! Exclude Products cannot exceed more than 255 Characters')) ?></div>');
+
+        function showError() {
+            $chipsWrap.addClass('is-error');
+            $errorMsg.show();
+        }
+
+        function hideError() {
+            $chipsWrap.removeClass('is-error');
+            $errorMsg.hide();
+        }
 
         function parseChipsFromInput() {
             var val = $exInput.val() || '';
@@ -811,6 +919,7 @@ require(['jquery', 'domReady!'], function ($) {
                     chips.splice(i, 1);
                     saveChipsToInput(chips);
                     renderChips();
+                    hideError();
                 });
                 $chip.append($removeBtn);
                 $chipInputField.before($chip);
@@ -821,18 +930,42 @@ require(['jquery', 'domReady!'], function ($) {
             $chipInputField.prop('disabled', !!disabled);
         }
 
-        function addChip(val) {
-            val = (val || '').trim();
-            if (!val) {
+        function addChip(rawVal) {
+            rawVal = (rawVal || '').trim();
+            if (!rawVal) {
+                return;
+            }
+            var newItems = rawVal.split(',').map(function (s) { return s.trim(); }).filter(function (s) { return s.length > 0; });
+            if (!newItems.length) {
                 return;
             }
             var chips = parseChipsFromInput();
-            if (chips.indexOf(val) === -1) {
-                chips.push(val);
+            var addedAny = false;
+            var exceeded = false;
+
+            newItems.forEach(function (item) {
+                if (chips.indexOf(item) === -1) {
+                    var candidate = chips.concat([item]).join(',');
+                    if (candidate.length <= 255) {
+                        chips.push(item);
+                        addedAny = true;
+                    } else {
+                        exceeded = true;
+                    }
+                }
+            });
+
+            if (addedAny) {
                 saveChipsToInput(chips);
                 renderChips();
             }
-            $chipInputField.val('');
+
+            if (exceeded) {
+                showError();
+            } else {
+                hideError();
+                $chipInputField.val('');
+            }
         }
 
         $chipInputField.on('keydown', function (e) {
@@ -845,8 +978,13 @@ require(['jquery', 'domReady!'], function ($) {
                     chips.pop();
                     saveChipsToInput(chips);
                     renderChips();
+                    hideError();
                 }
             }
+        });
+
+        $chipInputField.on('input', function () {
+            hideError();
         });
 
         $chipInputField.on('blur', function () {
@@ -865,6 +1003,7 @@ require(['jquery', 'domReady!'], function ($) {
 
         $chipsWrap.append($chipInputField);
         $chipsWrap.insertAfter($exInput);
+        $errorMsg.insertAfter($chipsWrap);
         renderChips();
 
         $exInput.on('change', function () {
